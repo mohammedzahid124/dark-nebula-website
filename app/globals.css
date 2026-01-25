@@ -101,6 +101,46 @@ body {
   background: linear-gradient(180deg, #9333ea 0%, #0891b2 100%);
 }
 
+/* Logo Animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
 /* Section Spacing */
 section {
   scroll-margin-top: 80px;
@@ -122,3 +162,4 @@ textarea:focus {
   background: rgba(168, 85, 247, 0.3);
   color: white;
 }
+

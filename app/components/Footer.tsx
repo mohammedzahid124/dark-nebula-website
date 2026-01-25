@@ -1,6 +1,7 @@
 "use client";
 
 import { Github, Linkedin, Twitter } from "lucide-react";
+import FuturisticLogo from "./FuturisticLogo";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -58,6 +59,7 @@ export default function Footer() {
         {/* Glowing gradient orbs */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob" />
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000" />
+
         <div className="absolute top-1/2 right-0 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000" />
 
         {/* Energy flow lines */}
@@ -69,6 +71,13 @@ export default function Footer() {
       {/* Content */}
       <div className="relative z-10 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
+          {/* Logo Section */}
+          <div className="text-center mb-12">
+            <FuturisticLogo size="medium" animated={true} />
+            <h3 className="text-2xl font-bold text-white mt-4">Dark Nebula</h3>
+            <p className="text-gray-400 text-sm mt-1">Cutting-Edge Tech Solutions for the Future</p>
+          </div>
+
           {/* Main Footer Content */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
             {/* Brand */}

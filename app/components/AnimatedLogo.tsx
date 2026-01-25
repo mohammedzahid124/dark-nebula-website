@@ -9,13 +9,13 @@ export default function AnimatedLogo() {
       {/* Futuristic Logo */}
       <FuturisticLogo />
 
-      {/* Text Label - DarkNebula with gradient colors */}
+      {/* Text Label - DarkNebula with gradient colors and increased size */}
       <div className="hidden sm:block">
-        <div className="text-sm font-bold tracking-tight">
-          <span className="bg-linear-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+        <div className="text-lg md:text-xl font-bold tracking-tighter">
+          <span className="bg-linear-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg">
             Dark
           </span>
-          <span className="bg-linear-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
             Nebula
           </span>
         </div>

@@ -1,153 +1,180 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 
-export default function FuturisticLogo() {
-  const svgRef = useRef<SVGSVGElement>(null);
-  const [rotation, setRotation] = useState(0);
+interface FuturisticLogoProps {
+  className?: string;
+  size?: "small" | "medium" | "large";
+  animated?: boolean;
+  priority?: boolean;
+}
 
-  useEffect(() => {
-    let animationId: NodeJS.Timeout;
+export default function FuturisticLogo({
+  className = "",
+  size = "medium",
+  animated = true,
+  priority = false,
+}: FuturisticLogoProps) {
+  const sizes = {
+    small: "w-12 h-12",
+    medium: "w-24 h-24",
+    large: "w-64 h-64",
+  };
 
-    const animate = () => {
-      setRotation((prev) => (prev + 1) % 360);
-    };
+  const dimensions = {
+    small: { viewBox: "0 0 100 100", planetRadius: 15 },
+    medium: { viewBox: "0 0 100 100", planetRadius: 15 },
+    large: { viewBox: "0 0 100 100", planetRadius: 15 },
+  };
 
-    animationId = setInterval(animate, 50);
-
-    return () => clearInterval(animationId);
-  }, []);
+  const config = dimensions[size];
 
   return (
-    <svg
-      ref={svgRef}
-      viewBox="0 0 200 200"
-      className="w-12 h-12 md:w-16 md:h-16"
+    <div
+      className={`${sizes[size]} ${className} flex items-center justify-center relative`}
       style={{
-        filter: "drop-shadow(0 0 10px rgba(147, 51, 234, 0.6))",
+        filter: animated ? "drop-shadow(0 0 30px rgba(168, 85, 247, 0.6))" : undefined,
       }}
     >
-      {/* Central Orb */}
-      <defs>
-        <radialGradient id="orbGradient" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ec4899" stopOpacity="1" />
-          <stop offset="50%" stopColor="#9333ea" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.4" />
-        </radialGradient>
-
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      {/* Outer Glow Ring */}
-      <circle
-        cx="100"
-        cy="100"
-        r="85"
-        fill="none"
-        stroke="url(#orbGradient)"
-        strokeWidth="1"
-        opacity="0.4"
-      />
-
-      {/* Middle Ring */}
-      <circle
-        cx="100"
-        cy="100"
-        r="75"
-        fill="none"
-        stroke="#06b6d4"
-        strokeWidth="0.5"
-        opacity="0.3"
-      />
-
-      {/* Rotating Spiral Arms */}
-      <g
+      <svg
+        viewBox={config.viewBox}
+        className="w-full h-full"
+        xmlns="http://www.w3.org/2000/svg"
         style={{
-          transform: `rotate(${rotation}deg)`,
-          transformOrigin: "100px 100px",
-          transition: "transform 0.05s linear",
+          filter: "drop-shadow(0 0 20px rgba(168, 85, 247, 0.4))",
         }}
       >
-        {/* Spiral Arm 1 */}
-        <path
-          d="M 100,100 Q 130,70 140,40 Q 145,25 150,10"
-          stroke="#ec4899"
-          strokeWidth="2"
+        <defs>
+          <radialGradient id="planetGradient" cx="35%" cy="35%">
+            <stop offset="0%" stopColor="#ff6b9d" stopOpacity="1" />
+            <stop offset="50%" stopColor="#a855f7" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#5b21b6" stopOpacity="1" />
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="planetGlow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Outer Glow Aura */}
+        <circle
+          cx="50"
+          cy="50"
+          r="45"
           fill="none"
-          opacity="0.8"
+          stroke="rgba(168, 85, 247, 0.2)"
+          strokeWidth="2"
+          opacity="0.5"
+        />
+
+        {/* Planet Core - Stationary */}
+        <circle
+          cx="50"
+          cy="50"
+          r={config.planetRadius}
+          fill="url(#planetGradient)"
+          filter="url(#planetGlow)"
+        />
+
+        {/* Planet Shine */}
+        <ellipse
+          cx="45"
+          cy="45"
+          rx="6"
+          ry="8"
+          fill="rgba(255, 255, 255, 0.4)"
           filter="url(#glow)"
         />
 
-        {/* Spiral Arm 2 */}
-        <path
-          d="M 100,100 Q 70,130 40,140 Q 25,145 10,150"
-          stroke="#06b6d4"
-          strokeWidth="2"
-          fill="none"
-          opacity="0.8"
-          filter="url(#glow)"
-        />
+        {/* Ring 1 - Outer (Spinning) */}
+        {animated && (
+          <g
+            style={{
+              animation: "ring-spin 25s linear infinite",
+              transformOrigin: "50px 50px",
+            } as React.CSSProperties}
+          >
+            <ellipse
+              cx="50"
+              cy="50"
+              rx="40"
+              ry="12"
+              fill="none"
+              stroke="rgba(6, 182, 212, 0.6)"
+              strokeWidth="1.5"
+              filter="url(#glow)"
+            />
+          </g>
+        )}
 
-        {/* Spiral Arm 3 */}
-        <path
-          d="M 100,100 Q 130,130 160,160 Q 175,175 190,190"
-          stroke="#9333ea"
-          strokeWidth="2"
-          fill="none"
-          opacity="0.8"
-          filter="url(#glow)"
-        />
-      </g>
+        {/* Ring 2 - Middle (Spinning) */}
+        {animated && (
+          <g
+            style={{
+              animation: "ring-spin 18s linear infinite reverse",
+              transformOrigin: "50px 50px",
+            } as React.CSSProperties}
+          >
+            <ellipse
+              cx="50"
+              cy="50"
+              rx="32"
+              ry="10"
+              fill="none"
+              stroke="rgba(168, 85, 247, 0.5)"
+              strokeWidth="1.5"
+              filter="url(#glow)"
+            />
+          </g>
+        )}
 
-      {/* Central Planet/Orb */}
-      <circle cx="100" cy="100" r="20" fill="url(#orbGradient)" filter="url(#glow)" />
+        {/* Ring 3 - Inner (Spinning) */}
+        {animated && (
+          <g
+            style={{
+              animation: "ring-spin 30s linear infinite",
+              transformOrigin: "50px 50px",
+            } as React.CSSProperties}
+          >
+            <ellipse
+              cx="50"
+              cy="50"
+              rx="24"
+              ry="8"
+              fill="none"
+              stroke="rgba(236, 72, 153, 0.4)"
+              strokeWidth="1"
+              filter="url(#glow)"
+            />
+          </g>
+        )}
 
-      {/* Inner Core */}
-      <circle
-        cx="100"
-        cy="100"
-        r="12"
-        fill="#fbbf24"
-        opacity="0.9"
-        filter="url(#glow)"
-      />
+        {/* Accent Particles */}
+        <circle cx="90" cy="50" r="1.5" fill="rgba(6, 182, 212, 0.7)" filter="url(#glow)" />
+        <circle cx="10" cy="50" r="1.5" fill="rgba(168, 85, 247, 0.7)" filter="url(#glow)" />
+        <circle cx="50" cy="15" r="1" fill="rgba(236, 72, 153, 0.6)" filter="url(#glow)" />
+      </svg>
 
-      {/* Energy Pulses */}
-      <circle
-        cx="100"
-        cy="100"
-        r="25"
-        fill="none"
-        stroke="#ec4899"
-        strokeWidth="1"
-        opacity="0.4"
-        style={{
-          animation: "pulse 2s ease-in-out infinite",
-        }}
-      />
-
-      <style jsx>{`
-        @keyframes pulse {
-          0% {
-            r: 25;
-            opacity: 0.6;
+      <style>{`
+        @keyframes ring-spin {
+          from {
+            transform: rotate(0deg);
           }
-          50% {
-            r: 35;
-            opacity: 0.2;
-          }
-          100% {
-            r: 25;
-            opacity: 0.6;
+          to {
+            transform: rotate(360deg);
           }
         }
       `}</style>
-    </svg>
+    </div>
   );
 }
