@@ -1,8 +1,21 @@
 "use client";
 
-import { Shield, Brain, BarChart3, Code, Palette, Server, Mail, TrendingUp, Share2 } from "lucide-react";
+import {
+  Shield,
+  Brain,
+  BarChart3,
+  Code,
+  Palette,
+  Server,
+  Mail,
+  TrendingUp,
+  Share2,
+} from "lucide-react";
+import { useState } from "react";
 
 export default function Services() {
+  const [activeService, setActiveService] = useState<any>(null);
+
   const services = [
     {
       id: 1,
@@ -24,7 +37,22 @@ export default function Services() {
         "Performance tuning",
         "Code quality assurance",
       ],
-      description: "Modern, scalable web applications built with cutting-edge technologies and best practices.",
+      description:
+        "Modern, scalable web applications built with cutting-edge technologies and best practices.",
+      details: `
+We build scalable, production‑ready web platforms using React, Next.js, and modern backend stacks.
+
+Our process includes system architecture planning, REST & realtime APIs, database design, authentication, performance optimization, and cloud deployment.
+
+
+`,
+      example: `
+Imagine you want to open a lemonade stand online.
+
+We build the website (the stand), payment system (the cash box), inventory (how many lemons you have), and make sure customers can easily order without spills.
+
+Basically: we build your digital shop from scratch and make sure it doesn’t crash on opening day.
+`,
     },
     {
       id: 2,
@@ -46,7 +74,22 @@ export default function Services() {
         "Animation & interactions",
         "Mobile-first approach",
       ],
-      description: "Beautiful, intuitive interfaces that engage users and drive conversions with seamless experiences.",
+      description:
+        "Beautiful, intuitive interfaces that engage users and drive conversions with seamless experiences.",
+      details: `
+We craft beautiful, user‑centered interfaces that convert visitors into customers.
+
+Our UX process includes research, wireframing, prototyping in Figma, accessibility audits, and responsive design systems.
+
+
+`,
+      example: `
+This is like arranging furniture in your house.
+
+Sure, everything can fit — but we make sure people don’t trip over chairs, find the bathroom easily, and actually enjoy being inside.
+
+Pretty + easy = happy users.
+`,
     },
     {
       id: 3,
@@ -68,7 +111,21 @@ export default function Services() {
         "Security hardening",
         "Disaster recovery",
       ],
-      description: "Robust infrastructure solutions ensuring reliability, security, and optimal application performance.",
+      description:
+        "Robust infrastructure solutions ensuring reliability, security, and optimal application performance.",
+      details: `
+We design secure, highly‑available cloud infrastructure using AWS/GCP with automated deployments.
+
+Our DevOps workflows include Docker, Kubernetes, CI/CD pipelines, monitoring, logging, and disaster recovery.
+
+
+`,
+      example: `
+Think of this as building roads, power lines, and water pipes for your app.
+
+You don’t see them — but without them nothing works.  
+We make sure your website doesn’t faint when lots of visitors show up.
+`,
     },
     {
       id: 4,
@@ -93,7 +150,20 @@ export default function Services() {
         "Cryptography solutions",
         "VPNs for websites & infrastructure",
       ],
-      description: "Enterprise-grade security solutions protecting your infrastructure from advanced threats and vulnerabilities.",
+      description:
+        "Enterprise-grade security solutions protecting your infrastructure from advanced threats and vulnerabilities.",
+      details: `
+We protect your systems using enterprise‑grade cybersecurity and offensive security practices.
+
+Our services include penetration testing, vulnerability assessment, network security, honeypots, DDoS protection, VPNs, and cryptographic solutions.
+
+
+`,
+      example: `
+You lock your house. You install cameras. You don’t give strangers your keys.
+
+We do exactly that for your digital business — except hackers don’t knock first.
+`,
     },
     {
       id: 5,
@@ -114,7 +184,22 @@ export default function Services() {
         "Neural network optimization",
         "Model fine-tuning & deployment",
       ],
-      description: "Cutting-edge AI solutions that automate complex tasks and unlock new business possibilities.",
+      description:
+        "Cutting-edge AI solutions that automate complex tasks and unlock new business possibilities.",
+      details: `
+We build intelligent AI agents and generative systems powered by LLMs and neural networks.
+
+Solutions include autonomous workflows, task automation, custom AI tools, model fine‑tuning, and deployment pipelines.
+
+
+`,
+      example: `
+Imagine hiring a super‑smart robot intern.
+
+It writes content, answers customers, analyzes data, and works 24/7 without coffee breaks.
+
+That’s what we build.
+`,
     },
     {
       id: 6,
@@ -135,7 +220,20 @@ export default function Services() {
         "Data governance & quality",
         "Predictive analytics",
       ],
-      description: "Transform raw data into actionable intelligence with our advanced analytics and engineering services.",
+      description:
+        "Transform raw data into actionable intelligence with our advanced analytics and engineering services.",
+      details: `
+We transform raw data into actionable intelligence through scalable pipelines and analytics platforms.
+
+Our solutions cover ETL pipelines, data warehouses, dashboards, real‑time streaming, and predictive analytics.
+
+
+`,
+      example: `
+You have thousands of puzzle pieces (data).
+
+We organize them and show you the picture — so you know what customers like, what’s broken, and what’s making money.
+`,
     },
     {
       id: 7,
@@ -157,7 +255,19 @@ export default function Services() {
         "Email analytics & reporting",
         "Integration with CRM systems",
       ],
-      description: "Comprehensive email marketing solutions designed to nurture leads, engage customers, and drive conversions through targeted campaigns.",
+      description:
+        "Comprehensive email marketing solutions designed to nurture leads, engage customers, and drive conversions through targeted campaigns.",
+      details: `
+We design automated email systems that nurture leads and drive conversions.
+
+Our campaigns include segmentation, personalization, A/B testing, analytics, and CRM integrations.
+
+`,
+      example: `
+Instead of yelling promotions from your rooftop…
+
+We send smart emails to the right people at the right time — politely, automatically, and without annoying spam vibes.
+`,
     },
     {
       id: 8,
@@ -179,7 +289,19 @@ export default function Services() {
         "Growth hacking strategies",
         "Market segmentation",
       ],
-      description: "Comprehensive digital marketing solutions driving sustainable growth and brand visibility.",
+      description:
+        "Comprehensive digital marketing solutions driving sustainable growth and brand visibility.",
+      details: `
+We drive measurable growth using SEO, paid ads, marketing automation, and performance analytics.
+
+Our growth strategies focus on customer journeys, acquisition funnels, and brand visibility.
+
+`,
+      example: `
+You built something awesome — but nobody knows.
+
+We’re the megaphone 📣 that tells the internet you exist and helps the right customers find you.
+`,
     },
     {
       id: 9,
@@ -201,19 +323,37 @@ export default function Services() {
         "Platform-specific expertise",
         "Crisis management",
       ],
-      description: "Strategic social media management building authentic engagement and brand loyalty.",
+      description:
+        "Strategic social media management building authentic engagement and brand loyalty.",
+      details: `
+We manage social platforms with data‑driven strategies that build engagement and brand loyalty.
+
+Services include content creation, influencer partnerships, analytics, trend monitoring, and crisis management.
+
+
+`,
+      example: `
+Think of us as your brand’s social butterfly.
+
+We talk to your audience, post cool stuff, reply to comments, and make sure your business doesn’t sound boring online.
+`,
     },
   ];
 
   return (
-    <section id="services" className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8">
+    <section
+      id="services"
+      className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-linear-to-r from-purple-400 via-cyan-400 to-pink-400 bg-clip-text text-transparent">
             What We Do
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Complete technology solutions from security and AI to web development and infrastructure management. Your success is our mission.
+            Complete technology solutions from security and AI to web
+            development and infrastructure management. Your success is our
+            mission.
           </p>
         </div>
 
@@ -226,11 +366,13 @@ export default function Services() {
                 className={`group relative h-full overflow-hidden rounded-2xl border ${service.borderColor} ${service.hoverBorder} transition-all duration-300 hover:shadow-2xl`}
               >
                 {/* Animated background gradient */}
-                <div className={`absolute inset-0 bg-linear-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-                
+                <div
+                  className={`absolute inset-0 bg-linear-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+                />
+
                 {/* Dark background */}
                 <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" />
-                
+
                 {/* Glowing border animation */}
                 <div
                   className={`absolute inset-0 bg-linear-to-br ${service.color} rounded-2xl p-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10`}
@@ -240,24 +382,37 @@ export default function Services() {
                 <div className="relative p-8 h-full flex flex-col">
                   {/* Icon */}
                   <div className="mb-6">
-                    <div className={`inline-block p-4 rounded-xl bg-linear-to-br ${service.color} bg-opacity-10`}>
-                      <IconComponent className={`w-8 h-8 ${service.lightColor} group-hover:scale-125 transition-transform duration-300`} />
+                    <div
+                      className={`inline-block p-4 rounded-xl bg-linear-to-br ${service.color} bg-opacity-10`}
+                    >
+                      <IconComponent
+                        className={`w-8 h-8 ${service.lightColor} group-hover:scale-125 transition-transform duration-300`}
+                      />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className={`text-2xl font-bold mb-3 bg-linear-to-r ${service.color} bg-clip-text text-transparent`}>
+                  <h3
+                    className={`text-2xl font-bold mb-3 bg-linear-to-r ${service.color} bg-clip-text text-transparent`}
+                  >
                     {service.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-300 text-sm mb-6">{service.description}</p>
+                  <p className="text-gray-300 text-sm mb-6">
+                    {service.description}
+                  </p>
 
                   {/* Features Grid */}
                   <div className="grid grid-cols-2 gap-3 grow">
                     {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2 group/feature">
-                        <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 bg-linear-to-r ${service.color}`} />
+                      <div
+                        key={idx}
+                        className="flex items-start gap-2 group/feature"
+                      >
+                        <div
+                          className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 bg-linear-to-r ${service.color}`}
+                        />
                         <span className="text-xs text-gray-300 group-hover/feature:text-white transition-colors">
                           {feature}
                         </span>
@@ -266,7 +421,10 @@ export default function Services() {
                   </div>
 
                   {/* CTA Button */}
-                  <button className={`mt-6 w-full py-2 px-4 bg-linear-to-r ${service.color} text-white rounded-lg opacity-80 group-hover:opacity-100 transition-all font-semibold text-sm`}>
+                  <button
+                    onClick={() => setActiveService(service)}
+                    className={`mt-6 w-full py-2 px-4 bg-linear-to-r ${service.color} text-white rounded-lg opacity-80 group-hover:opacity-100 transition-all font-semibold text-sm`}
+                  >
                     Learn More
                   </button>
                 </div>
@@ -294,6 +452,51 @@ export default function Services() {
           </div>
         </div>
       </div>
+      {activeService && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur flex items-center justify-center px-4">
+          <div className="relative max-w-6xl w-full max-h-screen overflow-y-auto bg-black border border-white/20 rounded-2xl p-10">
+            {/* Close */}
+            <button
+              onClick={() => setActiveService(null)}
+              className="absolute top-4 right-4 text-white text-xl"
+            >
+              ✕
+            </button>
+
+            <h2 className="text-3xl font-bold mb-4 bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              {activeService.title}
+            </h2>
+
+            <p className="text-gray-300 mb-6">{activeService.description}</p>
+
+            <h4 className="text-white font-semibold mb-2">How we deliver</h4>
+
+            <ul className="grid grid-cols-2 gap-3 text-sm text-gray-300">
+              {activeService.features.map((f: string, i: number) => (
+                <li key={i}>✓ {f}</li>
+              ))}
+            </ul>
+
+            <div className="mt-6 text-gray-400 text-sm leading-relaxed whitespace-pre-line">
+              {activeService.details}
+            </div>
+            <div className="mt-8 relative rounded-xl p-[1px] bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500">
+              <div className="bg-black/90 rounded-xl p-5 backdrop-blur">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xl">💡</span>
+                  <span className="text-sm font-semibold text-cyan-400 uppercase tracking-wide">
+                    Real‑life example
+                  </span>
+                </div>
+
+                <p className="text-sm text-gray-200 italic leading-relaxed whitespace-pre-line">
+                  {activeService.example}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

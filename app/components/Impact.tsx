@@ -61,6 +61,21 @@ const carouselStyles = `
   .lightning-effect {
     animation: lightningStrike 2.5s ease-in-out infinite;
   }
+    .cyber-dune {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34,211,238,.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139,92,246,.25), transparent 45%),
+    linear-gradient(135deg, rgba(255,180,80,.08), rgba(0,0,0,.9)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.03) 0px,
+      rgba(255,255,255,.03) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  backdrop-filter: blur(12px);
+}
+
 `;
 
 export default function Impact() {
@@ -154,10 +169,12 @@ export default function Impact() {
           {reasons.map((reason, idx) => (
             <div
               key={idx}
-              className="group relative bg-linear-to-b from-white/10 to-white/5 border border-white/20 rounded-2xl p-8 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/20 hidden md:block"
+              className="group relative cyber-dune border border-white/20 rounded-2xl p-8 hidden md:block"
+
+
             >
               {/* Gradient Border Effect */}
-              <div className="absolute inset-0 bg-linear-to-r from-cyan-500 to-purple-500 rounded-2xl p-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+              
 
               {/* Icon with Light Emission */}
               <div className="mb-4 flex justify-center icon-glow">
@@ -186,7 +203,7 @@ export default function Impact() {
                 const IconComponent = currentReason.icon;
                 return (
                   <div key={currentCardIndex} className="w-full px-2 slide-in">
-                    <div className="relative bg-linear-to-b from-white/10 to-white/5 border border-white/20 rounded-2xl p-6 sm:p-8 lightning-effect glow-border min-h-[420px] flex flex-col justify-center">
+                    <div className="relative cyber-dune border border-white/20 rounded-2xl p-6 sm:p-8 lightning-effect glow-border min-h-[420px] flex flex-col justify-center">
                       {/* Icon with Light Emission */}
                       <div className="mb-6 flex justify-center">
                         <div className="icon-glow">
