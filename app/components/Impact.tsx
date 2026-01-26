@@ -1,8 +1,72 @@
 "use client";
 
-import { Users, MessageSquare, Zap, CheckCircle, Shield, Rocket } from "lucide-react";
+import { useState, useRef } from "react";
+import { Users, MessageSquare, Zap, CheckCircle, Shield, Rocket, ChevronLeft, ChevronRight } from "lucide-react";
+
+const carouselStyles = `
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(34, 211, 238, 0.3), 0 0 20px rgba(139, 92, 246, 0.2), inset 0 0 10px rgba(34, 211, 238, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.6), 0 0 40px rgba(139, 92, 246, 0.4), inset 0 0 20px rgba(34, 211, 238, 0.2);
+    }
+  }
+
+  @keyframes lightningStrike {
+    0%, 100% {
+      border-color: rgba(34, 211, 238, 0.3);
+      filter: drop-shadow(0 0 2px rgba(34, 211, 238, 0.3));
+    }
+    50% {
+      border-color: rgba(139, 92, 246, 0.6);
+      filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5)) drop-shadow(0 0 15px rgba(34, 211, 238, 0.4));
+    }
+  }
+
+  @keyframes iconGlow {
+    0%, 100% {
+      filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.3));
+    }
+    50% {
+      filter: drop-shadow(0 0 15px rgba(34, 211, 238, 0.8)) drop-shadow(0 0 25px rgba(139, 92, 246, 0.6));
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .glow-border {
+    border-width: 2px;
+    border-image: linear-gradient(135deg, rgba(34, 211, 238, 0.4), rgba(139, 92, 246, 0.4)) 1;
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  .icon-glow {
+    animation: iconGlow 2s ease-in-out infinite;
+  }
+
+  .lightning-effect {
+    animation: lightningStrike 2.5s ease-in-out infinite;
+  }
+`;
 
 export default function Impact() {
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const touchStartRef = useRef(0);
+  const touchEndRef = useRef(0);
   const reasons = [
     {
       title: "Expert Team",
@@ -36,7 +100,45 @@ export default function Impact() {
     },
   ];
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndRef.current = e.changedTouches[0].clientX;
+    const distance = Math.abs(touchStartRef.current - touchEndRef.current);
+    const isHorizontalSwipe = distance > 50;
+
+    if (isHorizontalSwipe) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const distance = touchStartRef.current - touchEndRef.current;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      setCurrentCardIndex((prev) => (prev + 1) % reasons.length);
+    } else if (isRightSwipe) {
+      setCurrentCardIndex((prev) => (prev - 1 + reasons.length) % reasons.length);
+    }
+  };
+
+  const goToPrevious = () => {
+    setCurrentCardIndex((prev) => (prev - 1 + reasons.length) % reasons.length);
+  };
+
+  const goToNext = () => {
+    setCurrentCardIndex((prev) => (prev + 1) % reasons.length);
+  };
+
   return (
+    <>
+      <style>{carouselStyles}</style>
     <section id="why-choose" className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
@@ -52,21 +154,87 @@ export default function Impact() {
           {reasons.map((reason, idx) => (
             <div
               key={idx}
-              className="group relative bg-linear-to-b from-white/10 to-white/5 border border-white/20 rounded-2xl p-8 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/20"
+              className="group relative bg-linear-to-b from-white/10 to-white/5 border border-white/20 rounded-2xl p-8 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/20 hidden md:block"
             >
               {/* Gradient Border Effect */}
               <div className="absolute inset-0 bg-linear-to-r from-cyan-500 to-purple-500 rounded-2xl p-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
 
-              {/* Icon */}
-              <div className="mb-4 group-hover:scale-125 transition-transform duration-300">
-                <reason.icon className="w-10 h-10 text-cyan-400 group-hover:text-purple-400 transition-colors duration-300" />
+              {/* Icon with Light Emission */}
+              <div className="mb-4 flex justify-center icon-glow">
+                <reason.icon className="w-12 h-12 text-cyan-400" />
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-bold text-white mb-3">{reason.title}</h3>
-              <p className="text-gray-400 leading-relaxed">{reason.description}</p>
+              <h3 className="text-xl font-bold text-white mb-3 text-center">{reason.title}</h3>
+              <p className="text-gray-400 leading-relaxed text-center">{reason.description}</p>
             </div>
           ))}
+        </div>
+
+        {/* Mobile/Tablet Swipeable Carousel */}
+        <div className="md:hidden mb-12 w-full">
+          <div
+            className="relative w-full select-none"
+            style={{ touchAction: "pan-y" }}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {/* Current Card Display */}
+            <div className="relative min-h-[500px] flex items-center justify-center">
+              {(() => {
+                const currentReason = reasons[currentCardIndex];
+                const IconComponent = currentReason.icon;
+                return (
+                  <div key={currentCardIndex} className="w-full px-2 slide-in">
+                    <div className="relative bg-linear-to-b from-white/10 to-white/5 border border-white/20 rounded-2xl p-6 sm:p-8 lightning-effect glow-border min-h-[420px] flex flex-col justify-center">
+                      {/* Icon with Light Emission */}
+                      <div className="mb-6 flex justify-center">
+                        <div className="icon-glow">
+                          <IconComponent className="w-16 h-16 sm:w-20 sm:h-20 text-cyan-400" />
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 text-center">{currentReason.title}</h3>
+                      <p className="text-sm sm:text-base text-gray-400 leading-relaxed text-center">{currentReason.description}</p>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={goToPrevious}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              aria-label="Previous card"
+            >
+              <ChevronLeft className="w-6 h-6 text-cyan-400" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              aria-label="Next card"
+            >
+              <ChevronRight className="w-6 h-6 text-cyan-400" />
+            </button>
+
+            {/* Dot Indicators */}
+            <div className="flex justify-center gap-2 mt-6">
+              {reasons.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentCardIndex(idx)}
+                  className={`h-2 rounded-full transition-all ${
+                    idx === currentCardIndex
+                      ? "bg-cyan-400 w-6"
+                      : "bg-white/30 w-2 hover:bg-white/50"
+                  }`}
+                  aria-label={`Go to card ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Comparison Section */}
@@ -122,5 +290,6 @@ export default function Impact() {
         </div>
       </div>
     </section>
+    </>
   );
 }
