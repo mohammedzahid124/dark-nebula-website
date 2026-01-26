@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 import ChatBot from "@/app/components/ChatBot";
+import SplashCursor from "@/app/components/SplashCursor";
 
 
 const geistSans = Geist({
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}>
+        <SplashCursor />
         <Navbar />
         {children}
         <ChatBot />
