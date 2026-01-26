@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import ElectricBorder from "./ElectricBorder";
 
 export default function About() {
   const founders = [
@@ -59,17 +60,13 @@ export default function About() {
 
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             {founders.map((founder, idx) => (
-              <div
+              <ElectricBorder
                 key={idx}
-                className="group relative"
+                color={idx === 0 ? "#5227FF" : "#00D9FF"}
+                speed={1.2}
+                chaos={0.15}
+                borderRadius={24}
               >
-                {/* Card Background with Animated Border */}
-                <div className="absolute inset-0 bg-linear-to-b from-white/10 to-white/5 border border-white/20 rounded-3xl opacity-100 group-hover:opacity-0 transition-opacity duration-300 -z-10" />
-                <div className="absolute inset-0 bg-linear-to-b from-purple-500/20 to-cyan-500/10 border border-purple-500/50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-
-                {/* Gradient Glow on Hover */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition-all duration-500 -z-20" />
-
                 <div className="relative p-8 md:p-10">
                   {/* Profile Image Section */}
                   <div className="flex justify-center mb-8">
@@ -158,7 +155,7 @@ export default function About() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </ElectricBorder>
             ))}
           </div>
         </div>
