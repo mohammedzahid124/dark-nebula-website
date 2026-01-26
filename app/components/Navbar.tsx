@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import AnimatedLogo from "./AnimatedLogo";
+import Image from "next/image";
+import GradientText from "@/components/GradientText";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,12 +48,69 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Animated Logo */}
-          <button
-            onClick={() => scrollToSection("home")}
-            className="shrink-0 hover:opacity-80 transition-opacity"
-          >
-            <AnimatedLogo />
-          </button>
+          <div
+  onClick={() => scrollToSection("home")}
+  role="button"
+  tabIndex={0}
+  className="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity"
+>
+  <div className="relative w-12 h-12 flex items-center justify-center">
+     {/* Nebula Core Pulse */}
+  <div
+    className="
+      absolute inset-0
+      rounded-full
+      bg-purple-500/40
+      blur-2xl
+      animate-pulse-energy
+      pointer-events-none
+    "
+  />
+
+  {/* Saturn Elliptical Ring */}
+  <div
+    className="
+      absolute
+      w-20 h-20
+      scale-y-[0.35]
+      rotate-[-20deg]
+      rounded-full
+      ring-gradient
+      animate-spin-saturn
+      pointer-events-none
+    "
+  />
+
+  {/* Spark Particles */}
+  <div className="absolute w-20 h-20 scale-y-[0.35] rotate-[-20deg] pointer-events-none">
+    <span className="spark spark-1" />
+    <span className="spark spark-2" />
+    <span className="spark spark-3" />
+  </div>
+
+    {/* Logo */}
+    <img
+      src="/go.png"
+      alt="Logo"
+      className="relative z-10 w-10 h-10 animate-spin-slow transition-transform duration-500"
+    />
+  </div>
+
+  <GradientText
+    colors={["#c2bddaff", "#FF9FFC", "#0cb9dcff"]}
+    animationSpeed={3}
+    showBorder={false}
+    className="
+      text-2xl sm:text-3xl md:text-4xl
+      font-bold uppercase tracking-widest
+      [font-family:var(--font-orbitron)]
+    "
+  >
+    DarkNebula
+  </GradientText>
+</div>
+
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">

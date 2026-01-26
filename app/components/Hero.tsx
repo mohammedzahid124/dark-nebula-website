@@ -1,6 +1,7 @@
 "use client";
 
 import FuturisticGalaxy from "./FuturisticGalaxy";
+import RotatingText from "@/components/RotatingText";
 
 export default function Hero() {
   return (
@@ -13,10 +14,69 @@ export default function Hero() {
 
       {/* Content */}
       <div className="max-w-5xl mx-auto text-center relative z-10">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 bg-linear-to-r from-purple-300 via-white to-cyan-300 bg-clip-text text-transparent drop-shadow-2xl leading-tight">
-          Next-Gen Tech Solutions
-        </h1>
+        <div className="flex justify-center mb-8">
+ <div className="flex flex-col items-center text-center gap-4">
+  <h1 className="flex flex-wrap items-center justify-center gap-3 font-bold">
+    {/* Static text */}
+    <span
+      className="
+        text-4xl sm:text-5xl md:text-6xl
+        bg-linear-to-r from-purple-300 via-white to-cyan-300
+        bg-clip-text text-transparent
+        drop-shadow-2xl
+      "
+    >
+      Next‑Gen
+    </span>
+
+    {/* Rotating text */}
+    <RotatingText
+      texts={['Web Design', 'AI', 'Cyber Security', 'Analytics', 'Email Services', 'Digital Marketing']}
+      mainClassName="
+        text-4xl sm:text-5xl md:text-6xl
+        px-3 sm:px-4 md:px-5
+        bg-cyan-300 text-black
+        rounded-lg
+        overflow-hidden
+        py-1 sm:py-1.5 md:py-2
+        flex justify-center
+        shadow-lg shadow-cyan-500/30
+      "
+      splitLevelClassName="overflow-hidden"
+      staggerFrom="last"
+      initial={{ y: '100%' }}
+      animate={{ y: 0 }}
+      exit={{ y: '-120%' }}
+      staggerDuration={0.025}
+      transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+      rotationInterval={2000}
+    />
+  </h1>
+
+  {/* Next line */}
+  <h2
+    className="
+      text-4xl sm:text-5xl md:text-6xl
+      font-bold
+      bg-linear-to-r from-purple-300 via-white to-cyan-300
+      bg-clip-text text-transparent
+      drop-shadow-2xl
+    "
+  >
+    Solutions
+  </h2>
+</div>
+
+</div>
+
         
+
+
+          
+       
+
+
+
         <div className="relative mb-8">
           <div className="absolute inset-0 bg-linear-to-r from-purple-500 via-cyan-500 to-purple-500 rounded-2xl blur-2xl opacity-30" />
           <p className="relative text-lg sm:text-xl md:text-2xl text-white font-semibold px-6 py-6 rounded-2xl bg-black/50 backdrop-blur-md border border-white/20 shadow-2xl">

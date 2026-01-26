@@ -9,21 +9,23 @@ export default function About() {
       name: "Nashrat Jahan",
       title: "Software Engineer",
       role: "AI & Backend Specialist",
+        image: "/founders/nash.jpeg",
       bio: "Nashrat brings deep expertise in backend engineering and AI systems architecture. At LTIMindtree, she engineered autonomous AI agents using LangChain and LangGraph, building production-grade RAG systems and FastAPI services. Her full-stack capabilities span Next.js, React, and cloud infrastructure, with proven ability to deliver complex solutions for international enterprise clients.",
       message: "I believe in building AI systems that don't just work—they scale, they matter, and they solve real problems. Let's turn ambitious ideas into production reality.",
       expertise: [".NET", "C#", "Python", "LangChain", "LangGraph", "Next.js", "React", "Azure", "Machine Learning", "Data Engineering"],
-      github: "https://github.com/nashratjahan",
-      linkedin: "https://linkedin.com/in/nashratjahan",
+      github: "https://github.com/Naaashh12",
+      linkedin: "https://www.linkedin.com/in/nashrat-jahan-416bba205/",
     },
     {
       name: "Mohammed Zahid",
       title: "AI Engineer",
       role: "Full-Stack & Cloud Architect",
+        image: "/founders/zahid.jpeg",
       bio: "Mohammed is an AI systems engineer specializing in generative AI and production deployments. He has built advanced AI applications including Legal Contract Review systems and voice-interactive AI agents, combining LLMs with practical engineering. His expertise spans full-stack development with React and Spring Boot, cloud infrastructure automation, and deploying machine learning systems at scale.",
       message: "Great AI starts with great engineering. We build systems that are intelligent, scalable, and built to ship. That's where the real magic happens.",
       expertise: ["Generative AI", "LLMs", "RAG", "LangChain", "React", "Spring Boot", "Azure", "Docker", "CI/CD", "Infrastructure as Code"],
       github: "https://github.com/mohammedzahid124",
-      linkedin: "https://linkedin.com/in/mohammedzahid",
+      linkedin: "https://www.linkedin.com/in/mohammed-zahid-ba3136213/",
     },
   ];
 
@@ -77,19 +79,13 @@ export default function About() {
                       {/* Profile Image Container */}
                       <div className="relative w-32 h-32 rounded-full bg-linear-to-r from-purple-500 to-cyan-500 p-1 flex items-center justify-center overflow-hidden">
                         <div className="w-full h-full bg-black rounded-full flex items-center justify-center">
-                          {/* Placeholder for image - replace with actual image later */}
-                          <div className="w-full h-full flex items-center justify-center text-4xl font-bold bg-linear-to-br from-purple-600 to-cyan-600 text-white rounded-full">
-                            {founder.name.split(" ").map(n => n.charAt(0)).join("")}
-                          </div>
-                          {/* You can replace the above div with:
                           <Image
-                            src={`/founders/${founder.name.toLowerCase().replace(/\s+/g, '-')}.jpg`}
+                            src={founder.image}
                             alt={founder.name}
                             width={128}
                             height={128}
                             className="rounded-full object-cover w-full h-full"
                           />
-                          */}
                         </div>
                       </div>
                     </div>
