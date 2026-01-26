@@ -2,26 +2,43 @@
 
 import { Github, Linkedin, Twitter } from "lucide-react";
 import FuturisticLogo from "./FuturisticLogo";
+import { useState } from "react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [activeModal, setActiveModal] = useState<string | null>(null);
 
   const footerLinks = [
     {
       title: "Services",
-      links: ["Web Development", "UI/UX Design", "Cloud & DevOps"],
+      links: [
+        { label: "Web Development", target: "services" },
+        { label: "UI/UX Design", target: "services" },
+        { label: "Cloud & DevOps", target: "services" },
+      ],
     },
     {
       title: "Company",
-      links: ["About Us", "Blog", "Careers"],
+      links: [
+        { label: "About Us", target: "home" },
+        { label: "Blog", target: "blog" },
+      ],
     },
     {
       title: "Resources",
-      links: ["Documentation", "Support", "Contact"],
+      links: [
+        { label: "Documentation" },
+        { label: "Support" },
+        { label: "Contact", target: "contact" },
+      ],
     },
     {
       title: "Legal",
-      links: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
+      links: [
+        { label: "Privacy Policy" },
+        { label: "Terms of Service" },
+        { label: "Cookie Policy" },
+      ],
     },
   ];
 
@@ -36,7 +53,7 @@ export default function Footer() {
       <div className="absolute inset-0 overflow-hidden">
         {/* Cosmic gradient background */}
         <div className="absolute inset-0 bg-linear-to-b from-purple-900/20 via-black to-cyan-900/20" />
-        
+
         {/* Animated particles */}
         <div className="absolute inset-0">
           {Array.from({ length: 40 }).map((_, i) => (
@@ -71,12 +88,7 @@ export default function Footer() {
       {/* Content */}
       <div className="relative z-10 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          {/* Logo Section */}
-          <div className="text-center mb-12">
-            <FuturisticLogo size="medium" animated={true} />
-            <h3 className="text-2xl font-bold text-white mt-4">Dark Nebula</h3>
-            <p className="text-gray-400 text-sm mt-1">Cutting-Edge Tech Solutions for the Future</p>
-          </div>
+          
 
           {/* Main Footer Content */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
@@ -91,20 +103,31 @@ export default function Footer() {
                 </span>
               </button>
               <p className="text-gray-300 text-sm">
-                Pioneering the future with advanced technology, innovation, and transformative solutions.
+                Pioneering the future with advanced technology, innovation, and
+                transformative solutions.
               </p>
             </div>
 
             {/* Footer Links */}
+            {/* Footer Links */}
             {footerLinks.map((column, idx) => (
               <div key={idx}>
-                <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{column.title}</h4>
+                <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+                  {column.title}
+                </h4>
+
                 <ul className="space-y-2">
                   {column.links.map((link, i) => (
                     <li key={i}>
-                      <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-sm">
-                        {link}
-                      </a>
+                      <button
+                        onClick={() => {
+                          if (link.target) scrollToSection(link.target);
+                          else setActiveModal(link.label);
+                        }}
+                        className="text-gray-400 hover:text-cyan-400 transition-colors text-sm text-left"
+                      >
+                        {link.label}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -153,16 +176,110 @@ export default function Footer() {
           </div>
 
           {/* Back to Top */}
-          <div className="mt-8 pt-8 border-t border-white/10 text-center">
-            <button
-              onClick={() => scrollToSection("home")}
-              className="text-gray-400 hover:text-cyan-400 transition-colors text-sm font-semibold uppercase tracking-wider"
-            >
-              ↑ Back to Top
-            </button>
-          </div>
+          <div className="mt-8 pt-8 border-t border-white/10 text-center"></div>
         </div>
       </div>
+      {activeModal && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur flex items-center justify-center px-4">
+          <div className="relative max-w-2xl w-full bg-black border border-white/20 rounded-2xl p-8">
+            <button
+              onClick={() => setActiveModal(null)}
+              className="absolute top-4 right-4 text-white text-xl"
+            >
+              ✕
+            </button>
+
+            <h2 className="text-2xl font-bold mb-4 text-cyan-400">
+              {activeModal}
+            </h2>
+
+            <div className="text-gray-300 text-sm leading-relaxed space-y-4">
+              {activeModal === "Documentation" && (
+                <>
+                  <p>
+                    Welcome to Dark Nebula Documentation. Here you’ll find
+                    guides on our AI systems, cybersecurity workflows, DevOps
+                    pipelines, and full‑stack development processes.
+                  </p>
+                  <p>
+                    We provide architecture diagrams, API references, deployment
+                    guides, and integration tutorials for every solution we
+                    build.
+                  </p>
+                </>
+              )}
+
+              {activeModal === "Support" && (
+                <>
+                  <p>
+                    Our technical support team is available for deployment
+                    issues, security incidents, system upgrades, and performance
+                    optimization.
+                  </p>
+                  <p>
+                    Email: support@darknebula.tech
+                    <br />
+                    Response time: under 24 hours.
+                  </p>
+                </>
+              )}
+
+              {activeModal === "Contact" && (
+                <>
+                  <p>Let’s build something powerful together.</p>
+                  <p>
+                    Email: contact@darknebula.tech
+                    <br />
+                    Location: Remote‑first global team.
+                  </p>
+                </>
+              )}
+
+              {activeModal === "Privacy Policy" && (
+                <>
+                  <p>
+                    We respect your privacy. We collect only necessary
+                    information such as contact details and usage analytics to
+                    improve our services.
+                  </p>
+                  <p>
+                    Your data is never sold and is protected using
+                    industry‑standard security practices.
+                  </p>
+                </>
+              )}
+
+              {activeModal === "Terms of Service" && (
+                <>
+                  <p>
+                    By using Dark Nebula services, you agree to responsible
+                    usage, lawful activity, and respect for intellectual
+                    property.
+                  </p>
+                  <p>
+                    All delivered software remains client‑owned after project
+                    completion.
+                  </p>
+                </>
+              )}
+
+              {activeModal === "Cookie Policy" && (
+                <>
+                  <p>
+                    We use cookies for analytics and performance monitoring
+                    only.
+                  </p>
+                  <p>
+                    Cookies help us improve user experience and system
+                    reliability. You may disable cookies via your browser
+                    settings.
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }
