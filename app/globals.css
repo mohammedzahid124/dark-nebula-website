@@ -226,3 +226,69 @@ textarea:focus {
   transition: transform 0.6s ease;
 }
 
+/* ===== DARK NEBULA EFFECTS ===== */
+
+.nebula {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 999px;
+  filter: blur(160px);
+  opacity: 0.35;
+  animation: floatNebula 40s infinite alternate ease-in-out;
+}
+
+.nebula-purple {
+  background: #7c3aed;
+  top: -200px;
+  left: -200px;
+}
+
+.nebula-cyan {
+  background: #06b6d4;
+  top: 30%;
+  right: -200px;
+  animation-delay: 10s;
+}
+
+.nebula-pink {
+  background: #ec4899;
+  bottom: -150px;
+  left: 30%;
+  animation-delay: 20s;
+}
+
+/* Slow drifting */
+@keyframes floatNebula {
+  from { transform: translate(0,0); }
+  to { transform: translate(120px, -80px); }
+}
+
+/* Stars */
+.stars {
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(1px 1px at 20px 30px,#fff,transparent),
+    radial-gradient(1px 1px at 100px 200px,#fff,transparent),
+    radial-gradient(1px 1px at 300px 150px,#fff,transparent),
+    radial-gradient(1px 1px at 500px 400px,#fff,transparent);
+  background-size:400px 400px;
+  opacity:.25;
+  animation: starsMove 120s linear infinite;
+}
+
+@keyframes starsMove {
+  from {background-position:0 0;}
+  to {background-position:1000px 600px;}
+}
+
+/* Particle dust */
+.particle-dust {
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle,#ffffff22 1px,transparent 1px);
+  background-size:30px 30px;
+  opacity:.1;
+}
