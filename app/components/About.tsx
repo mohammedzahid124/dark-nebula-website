@@ -213,12 +213,13 @@ export default function About() {
         </div>
 
         {/* Mission Section */}
+
         <div className="border-t border-white/10 pt-20 mb-24">
           <div className="relative group">
             {/* Animated Background */}
             <div className="absolute inset-0 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
 
-            <div className="relative bg-linear-to-r from-purple-500/10 to-cyan-500/10 border border-white/20 rounded-3xl p-8 md:p-12 group-hover:border-purple-500/50 transition-all duration-300">
+            <div className="relative bg-linear-to-r from-purple-500/10 to-cyan-500/10 border border-white/20 rounded-3xl p-8 md:p-12 group-hover:border-purple-500/50 transition-all duration-300 shadow-[0px_20px_207px_40px_rgba(165,39,255,0.48)]">
               <h3 className="text-3xl font-bold text-white mb-6 text-center">
                 Our Philosophy
               </h3>
@@ -256,10 +257,11 @@ export default function About() {
             <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
               {/* Elementsphere Project */}
               <div className="group relative">
+              
                 {/* Card Background with Animated Border */}
                 <div className="absolute inset-0 bg-linear-to-b from-purple-500/20 to-cyan-500/10 border border-purple-500/50 rounded-3xl -z-10" />
 
-                {/* Gradient Glow on Hover */}
+                {/* Gradient Glow on Hover  */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition-all duration-500 -z-20" />
 
                 <div className="relative p-8 md:p-12">
@@ -335,25 +337,14 @@ export default function About() {
                     </div>
 
                     {/* Project Visual */}
-                    {/* Project Visual */}
+
                     <div className="relative group">
                       {/* Nebula glow */}
                       <div className="absolute -inset-2 bg-gradient-to-r from-purple-600/40 to-cyan-600/40 blur-xl opacity-40 group-hover:opacity-70 transition-all duration-700 -z-10" />
 
                       {/* Sci‑fi frame */}
                       <div
-                        className="
-      relative
-      border border-white/20
-      rounded-[28px]
-      overflow-hidden
-      backdrop-blur-xl
-      bg-white/5
-      transition-all duration-500
-      group-hover:border-cyan-400/60
-      group-hover:scale-[1.02]
-    "
-                      >
+                        className="relative border border-white/20 rounded-[28px] overflow-hidden backdrop-blur-xl    bg-white/5  transition-all duration-500  group-hover:border-cyan-400/60  group-hover:scale-[1.02] ">
                         <video
                           src="/elementsphere.mp4"
                           autoPlay
@@ -379,8 +370,11 @@ export default function About() {
                     </div>
                   </div>
                 </div>
+               
               </div>
+              
             </div>
+            
           </div>
           {/* CTA Section */}
           <div className="mt-20 text-center">
