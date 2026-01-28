@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import AnimatedLogo from "./AnimatedLogo";
-import Image from "next/image";
+
 import GradientText from "@/components/GradientText";
 
 export default function Navbar() {
