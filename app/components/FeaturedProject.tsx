@@ -1,11 +1,15 @@
 "use client";
 
+const starterBasePrice = "$240";
+const starterBase1Price = "$600";
+
 export default function FeaturedProject() {
   const partnershipPlans = [
     {
       name: "Starter",
-      price: "$2,999",
-      period: "/month",
+      priceLabel: "Starting",
+      priceValue: `@ ${starterBasePrice}`,
+      period: "",
       description: "Perfect for early-stage startups",
       features: [
         "Up to 40 hours/month",
@@ -18,8 +22,8 @@ export default function FeaturedProject() {
     },
     {
       name: "Professional",
-      price: "$5,999",
-      period: "/month",
+      priceLabel: "Starting",
+      priceValue: `@ ${starterBase1Price}`,
       description: "Ideal for growing businesses",
       features: [
         "Up to 80 hours/month",
@@ -49,7 +53,10 @@ export default function FeaturedProject() {
   ];
 
   return (
-    <section id="partnership" className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8">
+    <section
+      id="partnership"
+      className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
@@ -80,29 +87,43 @@ export default function FeaturedProject() {
               )}
 
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                <p className="text-gray-400 text-sm mb-6">{plan.description}</p>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  {plan.name}
+                </h3>
+                <p className="text-gray-400 text-sm mb-6">
+                  {plan.description}
+                </p>
 
+                {/* PRICE SECTION (UPDATED) */}
                 <div className="mb-8">
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  <span className="text-gray-400 ml-2">{plan.period}</span>
+                  {plan.priceLabel ? (
+                    <div className="leading-tight">
+                      <div className="text-sm text-gray-400">
+                        {plan.priceLabel}
+                      </div>
+                      <div className="text-4xl font-bold text-white">
+                        {plan.priceValue}
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <span className="text-4xl font-bold text-white">
+                        {plan.price}
+                      </span>
+                      <span className="text-gray-400 ml-2">
+                        {plan.period}
+                      </span>
+                    </div>
+                  )}
                 </div>
-
-                <button
-                  className={`w-full py-3 rounded-lg font-semibold transition-all mb-8 ${
-                    plan.highlighted
-                      ? "bg-linear-to-r from-purple-500 to-cyan-500 text-white hover:shadow-lg hover:shadow-purple-500/50"
-                      : "border border-purple-500/50 text-white hover:bg-purple-500/10"
-                  }`}
-                >
-                  Get Started
-                </button>
 
                 <div className="space-y-4">
                   {plan.features.map((feature, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <span className="text-cyan-400">✓</span>
-                      <span className="text-gray-300 text-sm">{feature}</span>
+                      <span className="text-gray-300 text-sm">
+                        {feature}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -113,12 +134,18 @@ export default function FeaturedProject() {
 
         {/* CTA Section */}
         <div className="bg-linear-to-r from-purple-900/20 to-cyan-900/20 border border-purple-500/30 rounded-2xl p-12 text-center">
-          <h3 className="text-3xl font-bold text-white mb-4">Ready to Transform Your Vision?</h3>
+          <h3 className="text-3xl font-bold text-white mb-4">
+            Ready to Transform Your Vision?
+          </h3>
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
             Let's discuss how Dark Nebula can help you build the future. Schedule a free consultation with our team.
           </p>
           <button
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() =>
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
             className="px-8 py-3 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold"
           >
             Schedule a Call

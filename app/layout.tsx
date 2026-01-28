@@ -5,13 +5,6 @@ import Navbar from "@/app/components/Navbar";
 import ChatBot from "@/app/components/ChatBot";
 import SplashCursor from "@/app/components/SplashCursor";
 
-import { Orbitron } from "next/font/google";
-
-export const orbitron = Orbitron({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-orbitron",
-});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,14 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`
-          ${geistSans.variable}
-          ${geistMono.variable}
-          ${orbitron.variable}
-          antialiased bg-black
-        `}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}>
         <SplashCursor />
         <Navbar />
         {children}
