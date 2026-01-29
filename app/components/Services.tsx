@@ -363,12 +363,19 @@ We talk to your audience, post cool stuff, reply to comments, and make sure your
             return (
               <div
                 key={service.id}
-                className={`group relative h-full overflow-hidden rounded-2xl border ${service.borderColor} ${service.hoverBorder} transition-all duration-300 hover:shadow-2xl`}
+                className={`group relative h-full overflow-hidden rounded-2xl border
+${service.borderColor} ${service.hoverBorder}
+transition-all duration-300
+bg-black/40 backdrop-blur-lg
+shadow-[0_10px_40px_rgba(0,0,0,0.3)]
+hover:shadow-[0_25px_80px_rgba(0,0,0,0.6)]
+hover:scale-105`}
               >
                 {/* Animated background gradient */}
                 <div
-                  className={`absolute inset-0 bg-linear-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-                />
+className={`absolute inset-0 bg-linear-to-br ${service.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-2xl`}
+/>
+
 
                 {/* Dark background */}
                 <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" />
