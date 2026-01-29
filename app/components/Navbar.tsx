@@ -206,7 +206,7 @@ className="relative px-6 py-2 bg-linear-to-r from-purple-500 to-cyan-500 text-wh
                 LinkedIn
               </a>
               <button className="w-full px-4 py-2 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold">
-                Become a Partner
+                Get Started
               </button>
             </div>
           </div>
