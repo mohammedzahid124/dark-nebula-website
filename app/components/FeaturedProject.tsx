@@ -1,5 +1,9 @@
 "use client";
 
+import Hyperspeed from "@/components/Hyperspeed";
+import Balatro from "@/components/Balatro";
+import LiquidChrome from "@/components/LiquidChrome";
+
 const starterBasePrice = "$240";
 const starterBase1Price = "$600";
 
@@ -9,11 +13,9 @@ export default function FeaturedProject() {
       name: "Starter",
       priceLabel: "Starting",
       priceValue: `@ ${starterBasePrice}`,
-      period: "",
       description: "Perfect for early-stage startups",
       features: [
         "Up to 40 hours/month",
-        "2 dedicated developers",
         "Bi-weekly check-ins",
         "Technical consultations",
         "Bug fixes & support",
@@ -27,7 +29,6 @@ export default function FeaturedProject() {
       description: "Ideal for growing businesses",
       features: [
         "Up to 80 hours/month",
-        "4 dedicated developers",
         "Weekly check-ins",
         "Priority support",
         "Feature development",
@@ -72,47 +73,102 @@ export default function FeaturedProject() {
           {partnershipPlans.map((plan, idx) => (
             <div
               key={idx}
-              className={`relative rounded-2xl transition-all duration-300 ${
-                plan.highlighted
-                  ? "md:scale-105 bg-linear-to-b from-purple-900/30 to-cyan-900/30 border border-purple-500/50 shadow-2xl shadow-purple-500/30"
-                  : "bg-linear-to-b from-white/10 to-white/5 border border-white/20 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
-              }`}
+              className="relative overflow-hidden rounded-2xl transition-all duration-300"
             >
-              {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-linear-to-r from-purple-500 to-cyan-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
-                  </span>
-                </div>
+              {/* 🔴 BALATRO — Starter background */}
+              {plan.name === "Starter" && (
+                <>
+                  <div className="absolute inset-0 z-0">
+                    <Balatro
+                      isRotate={false}
+                      mouseInteraction
+                      pixelFilter={745}
+                      color1="#DE443B"
+                      color2="#006BB4"
+                      color3="#162325"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/45 z-10" />
+                </>
               )}
 
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-gray-400 text-sm mb-6">
-                  {plan.description}
-                </p>
+              {/* 🌊 LIQUIDCHROME — Professional background */}
+              {plan.name === "Professional" && (
+                <>
+                  <div className="absolute inset-0 z-0">
+                    <LiquidChrome
+                      baseColor={[0.3, 0.0, 0.1]}
+                      speed={1}
+                      amplitude={0.6}
+                      interactive={true}
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/45 z-10" />
+                </>
+              )}
 
-                {/* PRICE SECTION (UPDATED) */}
+              {/* 🚀 HYPERSPEED — Enterprise background */}
+              {plan.name === "Enterprise" && (
+                <>
+                  <div className="absolute inset-0 z-0">
+                    <Hyperspeed
+                      effectOptions={{
+                        distortion: "turbulentDistortion",
+                        length: 400,
+                        roadWidth: 10,
+                        islandWidth: 2,
+                        lanesPerRoad: 3,
+                        fov: 90,
+                        fovSpeedUp: 150,
+                        speedUp: 2,
+                        carLightsFade: 0.4,
+                        totalSideLightSticks: 20,
+                        lightPairsPerRoadWay: 40,
+                        shoulderLinesWidthPercentage: 0.05,
+                        brokenLinesWidthPercentage: 0.1,
+                        brokenLinesLengthPercentage: 0.5,
+                        lightStickWidth: [0.12, 0.5],
+                        lightStickHeight: [1.3, 1.7],
+                        movingAwaySpeed: [60, 80],
+                        movingCloserSpeed: [-120, -160],
+                        carLightsLength: [12, 80],
+                        carLightsRadius: [0.05, 0.14],
+                        carWidthPercentage: [0.3, 0.5],
+                        carShiftX: [-0.8, 0.8],
+                        carFloorSeparation: [0, 5],
+                        colors: {
+                          roadColor: 526344,
+                          islandColor: 657930,
+                          background: 0,
+                          shoulderLines: 1250072,
+                          brokenLines: 1250072,
+                          leftCars: [14177983, 6770850, 12732332],
+                          rightCars: [242627, 941733, 3294549],
+                          sticks: 242627,
+                        },
+                      }}
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/40 z-10" />
+                </>
+              )}
+
+
+              {/* Card content */}
+              <div className="relative z-20 p-8">
+                <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                <p className="text-gray-400 text-sm mb-6">{plan.description}</p>
+
                 <div className="mb-8">
                   {plan.priceLabel ? (
                     <div className="leading-tight">
-                      <div className="text-sm text-gray-400">
-                        {plan.priceLabel}
-                      </div>
-                      <div className="text-4xl font-bold text-white">
-                        {plan.priceValue}
-                      </div>
+                      <div className="text-sm text-gray-400">{plan.priceLabel}</div>
+                      <div className="text-4xl font-bold text-white">{plan.priceValue}</div>
                     </div>
                   ) : (
                     <div>
-                      <span className="text-4xl font-bold text-white">
-                        {plan.price}
-                      </span>
-                      <span className="text-gray-400 ml-2">
-                        {plan.period}
-                      </span>
+                      <span className="text-4xl font-bold text-white">{plan.price}</span>
+                      <span className="text-gray-400 ml-2">{plan.period}</span>
                     </div>
                   )}
                 </div>
@@ -121,9 +177,7 @@ export default function FeaturedProject() {
                   {plan.features.map((feature, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <span className="text-cyan-400">✓</span>
-                      <span className="text-gray-300 text-sm">
-                        {feature}
-                      </span>
+                      <span className="text-gray-300 text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -134,17 +188,13 @@ export default function FeaturedProject() {
 
         {/* CTA Section */}
         <div className="bg-linear-to-r from-purple-900/20 to-cyan-900/20 border border-purple-500/30 rounded-2xl p-12 text-center">
-          <h3 className="text-3xl font-bold text-white mb-4">
-            Ready to Transform Your Vision?
-          </h3>
+          <h3 className="text-3xl font-bold text-white mb-4">Ready to Transform Your Vision?</h3>
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
             Let's discuss how Dark Nebula can help you build the future. Schedule a free consultation with our team.
           </p>
           <button
             onClick={() =>
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" })
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
             }
             className="px-8 py-3 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold"
           >
