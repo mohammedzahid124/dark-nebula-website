@@ -133,7 +133,10 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <button className="relative px-6 py-2 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold overflow-hidden group">
+            <button
+onClick={() => scrollToSection("partnership")}
+className="relative px-6 py-2 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold overflow-hidden group"
+>
               <span className="relative z-10">Get Started</span>
               <span className="absolute inset-0 bg-linear-to-r from-cyan-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
             </button>
