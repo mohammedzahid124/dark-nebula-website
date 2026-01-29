@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 
 import { useState, useRef } from "react";
 import {
@@ -75,6 +76,12 @@ const carouselStyles = `
 
 export default function Impact() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  setIsMobile(window.innerWidth < 768);
+}, []);
+
   const [flipped, setFlipped] = useState<number | null>(null);
   const touchStartRef = useRef(0);
   const touchEndRef = useRef(0);
@@ -169,13 +176,16 @@ export default function Impact() {
 
 
               >
-                <Iridescence
-                  className="absolute inset-0"
-                  color={[0.05, 0.17, 0.18]}
-                  mouseReact
-                  amplitude={0.08}
-                  speed={0.9}
-                />
+                {!isMobile && (
+<Iridescence
+className="absolute inset-0"
+color={[0.05, 0.17, 0.18]}
+mouseReact
+amplitude={0.08}
+speed={0.9}
+/>
+)}
+
 
                 <div
                   className="relative z-10 flip-inner"
@@ -221,16 +231,9 @@ export default function Impact() {
                       key={currentCardIndex}
                       className="w-full px-2 slide-in"
                     >
-                      <div className="relative overflow-hidden border border-white/20 rounded-2xl min-h-[380px] p-8 flex flex-col justify-center items-center text-center">
+                      <div className="relative overflow-hidden border border-white/20 rounded-2xl min-h-[380px] p-8 flex flex-col justify-center items-center text-center bg-black/60 backdrop-blur">
 
-                        <Iridescence
-                          className="absolute inset-0"
-                          color={[0.05, 0.17, 0.18]}
-                          mouseReact
-                          amplitude={0.08}
-                          speed={0.9}
-                        />
-
+                       
                         <div className="relative z-10 flex flex-col items-center justify-center h-full">
 
 <IconComponent className="w-20 h-20 text-cyan-400 mb-4 icon-glow" />

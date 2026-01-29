@@ -47,6 +47,7 @@ void main() {
 `;
 
 interface IridescenceProps {
+  className?: string;
   color?: [number, number, number];
   speed?: number;
   amplitude?: number;
