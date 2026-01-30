@@ -373,9 +373,8 @@ hover:scale-105`}
               >
                 {/* Animated background gradient */}
                 <div
-className={`absolute inset-0 bg-linear-to-br ${service.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-2xl`}
-/>
-
+                  className={`absolute inset-0 bg-linear-to-br ${service.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-2xl`}
+                />
 
                 {/* Dark background */}
                 <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" />
@@ -460,15 +459,18 @@ className={`absolute inset-0 bg-linear-to-br ${service.color} opacity-0 group-ho
         </div>
       </div>
       {activeService && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur flex items-center justify-center px-4">
-          <div className="relative max-w-6xl w-full max-h-screen overflow-y-auto bg-black border border-white/20 rounded-2xl p-10">
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur flex items-center justify-center px-3 sm:px-6">
+          <div className="relative w-full max-w-3xl h-[90vh] bg-black border border-white/20 rounded-xl sm:rounded-2xl flex flex-col">
             {/* Close */}
             <button
-              onClick={() => setActiveService(null)}
-              className="absolute top-4 right-4 text-white text-xl"
-            >
-              ✕
-            </button>
+onClick={() => setActiveService(null)}
+className="absolute top-3 right-3 z-50 h-10 w-10 rounded-full bg-black/80 border border-white/20 text-white flex items-center justify-center text-lg hover:bg-white/10"
+>
+✕
+</button>
+
+           <div className="flex-1 overflow-y-auto p-6 sm:p-10 overscroll-contain">
+
 
             <h2 className="text-3xl font-bold mb-4 bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               {activeService.title}
@@ -503,6 +505,8 @@ className={`absolute inset-0 bg-linear-to-br ${service.color} opacity-0 group-ho
             </div>
           </div>
         </div>
+        </div>
+
       )}
     </section>
   );

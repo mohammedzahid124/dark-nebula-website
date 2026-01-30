@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 
 import { useState, useRef } from "react";
 import {
@@ -13,7 +12,7 @@ import {
   ChevronRight,
   Award,
 } from "lucide-react";
-import Iridescence from "@/components/Iridescence";
+import MagicBento from "@/components/MagicBento";
 
 const carouselStyles = `
   @keyframes glowPulse {
@@ -28,6 +27,23 @@ const carouselStyles = `
   .flip-card {
  perspective: 1200px;
 }
+
+.cyber-card {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(168,85,247,.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(34,211,238,.25), transparent 45%),
+    linear-gradient(135deg, rgba(255,20,147,.08), rgba(0,0,0,.95)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.04) 0px,
+      rgba(255,255,255,.04) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+
+  backdrop-filter: blur(6px);
+}
+
 
 .flip-inner {
  transition: transform 0.6s ease;
@@ -76,11 +92,6 @@ const carouselStyles = `
 
 export default function Impact() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-useEffect(() => {
-  setIsMobile(window.innerWidth < 768);
-}, []);
 
   const [flipped, setFlipped] = useState<number | null>(null);
   const touchStartRef = useRef(0);
@@ -152,7 +163,7 @@ useEffect(() => {
       <style>{carouselStyles}</style>
       <section
         id="why-choose"
-        className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8"
+        className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
       >
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -171,41 +182,34 @@ useEffect(() => {
             {reasons.map((reason, idx) => (
               <div
                 key={idx}
-                
-                className="relative flip-card overflow-hidden border border-white/20 rounded-2xl cursor-pointer h-[320px]"
-
-
+                className="relative flip-card cyber-card overflow-hidden border border-white/20 rounded-2xl cursor-pointer h-[320px]"
               >
-                {!isMobile && (
-<Iridescence
-className="absolute inset-0"
-color={[0.05, 0.17, 0.18]}
-mouseReact
-amplitude={0.08}
-speed={0.9}
-/>
-)}
-
-
-                <div
-                  className="relative z-10 flip-inner"
-                >
+                <div className="relative z-10 flip-inner">
                   {/* FRONT */}
                   <div className="flip-front">
                     <div className="mb-4 icon-glow">
                       <reason.icon className="w-12 h-12 text-cyan-400" />
                     </div>
-                    <h3 className="text-xl font-bold text-white text-center">
+                    <h3
+                      className="text-xl font-bold text-transparent bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text
+ text-center"
+                    >
                       {reason.title}
                     </h3>
                   </div>
 
                   {/* BACK */}
                   <div className="flip-back text-center">
-                    <h3 className="text-xl font-bold text-white mb-3">
+                    <h3
+                      className="text-xl font-bold text-transparent bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text
+ mb-3"
+                    >
                       {reason.title}
                     </h3>
-                    <p className="text-gray-400 text-sm">
+                    <p
+                      className="text-gray-300 drop-shadow-[0_0_6px_rgba(34,211,238,.3)]
+ text-sm"
+                    >
                       {reason.description}
                     </p>
                   </div>
@@ -231,23 +235,24 @@ speed={0.9}
                       key={currentCardIndex}
                       className="w-full px-2 slide-in"
                     >
-                      <div className="relative overflow-hidden border border-white/20 rounded-2xl min-h-[380px] p-8 flex flex-col justify-center items-center text-center bg-black/60 backdrop-blur">
-
-                       
+                      <div className="relative overflow-hidden cyber-card border border-white/20 rounded-2xl min-h-[380px] p-8 flex flex-col justify-center items-center text-center">
                         <div className="relative z-10 flex flex-col items-center justify-center h-full">
+                          <IconComponent className="w-20 h-20 text-cyan-400 mb-4 icon-glow" />
 
-<IconComponent className="w-20 h-20 text-cyan-400 mb-4 icon-glow" />
+                          <h3
+                            className="text-xl font-bold text-transparent bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text
+ text-center"
+                          >
+                            {currentReason.title}
+                          </h3>
 
-<h3 className="text-xl font-bold text-white mb-3">
-{currentReason.title}
-</h3>
-
-<p className="text-gray-400 text-sm max-w-xs">
-{currentReason.description}
-</p>
-
-</div>
-
+                          <p
+                            className="text-gray-300 drop-shadow-[0_0_6px_rgba(34,211,238,.3)]
+ text-sm"
+                          >
+                            {currentReason.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );
@@ -281,95 +286,13 @@ speed={0.9}
           </div>
 
           {/* Comparison Section */}
-          <div className="mt-20 pt-20 border-t border-white/10">
+
+          <div className="mt-24">
             <h3 className="text-3xl font-bold text-center mb-12 bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               Why Work With Dark Nebula?
             </h3>
 
-            <div className="grid md:grid-cols-2 gap-12">
-              {/* What You Get */}
-              <div>
-                <h4 className="text-xl font-bold text-white mb-6">
-                  What You Get
-                </h4>
-                <div className="grid gap-6">
-                  {[
-                    "Custom-built solutions tailored to your business",
-                    "Transparent pricing with no hidden costs",
-                    "Regular communication and progress updates",
-                    "Post-launch support and maintenance",
-                    "Scalable architecture for future growth",
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 min-h-[80px]"
-                    >
-                      <span className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-cyan-400/20 text-cyan-400 icon-glow">
-                        <Award className="w-5 h-5" />
-                      </span>
-                      <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                        {item}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Our Process */}
-              <div>
-                <h4 className="text-xl font-bold text-white mb-6">
-                  Our Process
-                </h4>
-                <div className="grid gap-6">
-                  {[
-                    {
-                      step: "01",
-                      title: "Layout & Wireframe",
-                      desc: "Plan structure, layout and wireframes for web/app.",
-                    },
-                    {
-                      step: "02",
-                      title: "UI/UX Design",
-                      desc: "Design visuals, interfaces and user experience.",
-                    },
-                    {
-                      step: "03",
-                      title: "Development",
-                      desc: "Build website & app with clean, maintainable code.",
-                    },
-                    {
-                      step: "04",
-                      title: "Deployment & QA",
-                      desc: "Deploy live and test rigorously for quality assurance.",
-                    },
-                    {
-                      step: "05",
-                      title: "Security & Maintenance",
-                      desc: "Ensure robust security and ongoing maintenance.",
-                    },
-                  ].map((process, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 min-h-[80px]"
-                    >
-                      <div className="shrink-0 flex items-center justify-center">
-                        <div className="flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-linear-to-r from-purple-500 to-cyan-500 text-white font-bold icon-glow">
-                          {process.step}
-                        </div>
-                      </div>
-                      <div>
-                        <h5 className="text-sm sm:text-base font-semibold text-white">
-                          {process.title}
-                        </h5>
-                        <p className="text-gray-400 text-xs sm:text-sm">
-                          {process.desc}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <MagicBento />
           </div>
         </div>
       </section>
