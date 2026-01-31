@@ -21,9 +21,14 @@ export default function Footer() {
       title: "Company",
       links: [
         { label: "About Us", target: "home" },
-        { label: "Blog", target: "blog" },
+        {
+          label:
+            "BHIVE, Mahalakshmi Chambers, 29, Mahatma Gandhi Rd, next to Trinity Metro Station, opp. Kotak Bank, Sivanchetti Gardens, Bengaluru, Karnataka 560001",
+          href: "https://maps.google.com/?q=BHIVE+Mahalakshmi+Chambers+MG+Road+Bengaluru",
+        },
       ],
     },
+
     {
       title: "Resources",
       links: [
@@ -88,8 +93,6 @@ export default function Footer() {
       {/* Content */}
       <div className="relative z-10 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-
-
           {/* Main Footer Content */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
             {/* Brand */}
@@ -119,15 +122,26 @@ export default function Footer() {
                 <ul className="space-y-2">
                   {column.links.map((link, i) => (
                     <li key={i}>
-                      <button
-                        onClick={() => {
-                          if (link.target) scrollToSection(link.target);
-                          else setActiveModal(link.label);
-                        }}
-                        className="text-gray-400 hover:text-cyan-400 transition-colors text-sm text-left"
-                      >
-                        {link.label}
-                      </button>
+                      {link.href ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-cyan-400 transition-colors text-sm text-left leading-relaxed block max-w-xs"
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <button
+                          onClick={() => {
+                            if (link.target) scrollToSection(link.target);
+                            else setActiveModal(link.label);
+                          }}
+                          className="text-gray-400 hover:text-cyan-400 transition-colors text-sm text-left"
+                        >
+                          {link.label}
+                        </button>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -197,24 +211,29 @@ export default function Footer() {
               {activeModal === "Documentation" && (
                 <>
                   <p>
-                    Welcome to the <strong>Dark Nebula Documentation Center</strong>. This
-                    section provides structured technical resources covering our AI systems,
-                    cybersecurity methodologies, DevOps pipelines, and full‑stack development
-                    practices.
+                    Welcome to the{" "}
+                    <strong>Dark Nebula Documentation Center</strong>. This
+                    section provides structured technical resources covering our
+                    AI systems, cybersecurity methodologies, DevOps pipelines,
+                    and full‑stack development practices.
                   </p>
                   <p>
-                    You will find clear architecture overviews, API references, deployment
-                    guidelines, and integration walkthroughs designed to help clients and
-                    partners understand, implement, and maintain solutions delivered by
-                    <span className="text-cyan-400 font-semibold"> darknebulabs.com</span>.
+                    You will find clear architecture overviews, API references,
+                    deployment guidelines, and integration walkthroughs designed
+                    to help clients and partners understand, implement, and
+                    maintain solutions delivered by
+                    <span className="text-cyan-400 font-semibold">
+                      {" "}
+                      darknebulabs.com
+                    </span>
+                    .
                   </p>
                   <p>
-                    All documentation is continuously updated to reflect best practices,
-                    security standards, and system improvements.
+                    All documentation is continuously updated to reflect best
+                    practices, security standards, and system improvements.
                   </p>
                 </>
               )}
-
 
               {activeModal === "Support" && (
                 <>
@@ -245,90 +264,98 @@ export default function Footer() {
               {activeModal === "Privacy Policy" && (
                 <>
                   <p>
-                    At <span className="font-semibold text-cyan-400">darknebulabs.com</span>, we
-                    are committed to protecting your privacy and ensuring transparency in how
-                    your information is handled.
+                    At{" "}
+                    <span className="font-semibold text-cyan-400">
+                      darknebulabs.com
+                    </span>
+                    , we are committed to protecting your privacy and ensuring
+                    transparency in how your information is handled.
                   </p>
 
                   <p className="mt-3">
-                    We collect only essential information, such as contact details submitted
-                    through our forms and limited usage analytics, solely to respond to
-                    inquiries, improve our services, and enhance user experience.
+                    We collect only essential information, such as contact
+                    details submitted through our forms and limited usage
+                    analytics, solely to respond to inquiries, improve our
+                    services, and enhance user experience.
                   </p>
 
                   <p className="mt-3">
-                    Your personal data is never sold, rented, or shared with third parties for
-                    marketing purposes. All information is safeguarded using
-                    industry‑standard security measures to prevent unauthorized access,
-                    disclosure, or misuse.
+                    Your personal data is never sold, rented, or shared with
+                    third parties for marketing purposes. All information is
+                    safeguarded using industry‑standard security measures to
+                    prevent unauthorized access, disclosure, or misuse.
                   </p>
 
                   <p className="mt-3">
-                    By using <span className="font-semibold text-cyan-400">darknebulabs.com</span>,
-                    you consent to this Privacy Policy. If you have any questions or concerns
-                    regarding data usage, please contact us directly.
+                    By using{" "}
+                    <span className="font-semibold text-cyan-400">
+                      darknebulabs.com
+                    </span>
+                    , you consent to this Privacy Policy. If you have any
+                    questions or concerns regarding data usage, please contact
+                    us directly.
                   </p>
                 </>
               )}
-
 
               {activeModal === "Terms of Service" && (
                 <>
                   <p>
-                    By accessing or using the services provided by <strong>Dark Nebula</strong>,
-                    you agree to comply with these Terms of Service and all applicable laws and
-                    regulations.
+                    By accessing or using the services provided by{" "}
+                    <strong>Dark Nebula</strong>, you agree to comply with these
+                    Terms of Service and all applicable laws and regulations.
                   </p>
 
                   <p>
-                    Our services must be used responsibly and solely for lawful purposes.
-                    Any misuse, unauthorized access, or attempt to disrupt our systems is
-                    strictly prohibited.
+                    Our services must be used responsibly and solely for lawful
+                    purposes. Any misuse, unauthorized access, or attempt to
+                    disrupt our systems is strictly prohibited.
                   </p>
 
                   <p>
-                    All intellectual property, methodologies, and pre‑existing tools used by
-                    Dark Nebula remain our property unless explicitly agreed otherwise in
-                    writing.
+                    All intellectual property, methodologies, and pre‑existing
+                    tools used by Dark Nebula remain our property unless
+                    explicitly agreed otherwise in writing.
                   </p>
 
                   <p>
-                    Upon full project completion and payment, all custom‑developed deliverables
-                    are owned by the client, unless otherwise stated in a formal agreement.
+                    Upon full project completion and payment, all
+                    custom‑developed deliverables are owned by the client,
+                    unless otherwise stated in a formal agreement.
                   </p>
 
                   <p>
-                    Dark Nebula reserves the right to update or modify these terms at any time.
-                    Continued use of our services constitutes acceptance of any changes.
+                    Dark Nebula reserves the right to update or modify these
+                    terms at any time. Continued use of our services constitutes
+                    acceptance of any changes.
                   </p>
                 </>
               )}
-
 
               {activeModal === "Cookie Policy" && (
                 <>
                   <p>
-                    <strong>darknebulabs.com</strong> uses cookies and similar technologies
-                    strictly for analytics, performance monitoring, and essential
-                    functionality.
+                    <strong>darknebulabs.com</strong> uses cookies and similar
+                    technologies strictly for analytics, performance monitoring,
+                    and essential functionality.
                   </p>
 
                   <p>
-                    These cookies help us understand how visitors interact with our website,
-                    allowing us to improve usability, performance, and overall reliability.
-                    We do <strong>not</strong> use cookies for advertising or tracking across
-                    third‑party websites.
+                    These cookies help us understand how visitors interact with
+                    our website, allowing us to improve usability, performance,
+                    and overall reliability. We do <strong>not</strong> use
+                    cookies for advertising or tracking across third‑party
+                    websites.
                   </p>
 
                   <p>
-                    You have full control over cookie preferences and may disable or delete
-                    cookies at any time through your browser settings. Please note that
-                    disabling cookies may affect certain features or functionality of the
-                    website.
+                    You have full control over cookie preferences and may
+                    disable or delete cookies at any time through your browser
+                    settings. Please note that disabling cookies may affect
+                    certain features or functionality of the website.
                   </p>
                 </>
               )}
-
             </div>
           </div>
         </div>

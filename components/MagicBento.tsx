@@ -36,62 +36,62 @@ export const cardData: BentoCardProps[] = [
  {
   title: "Custom-built solutions",
   description: "Tailored to your business",
-  label: "What you get",
+  
   img: "/bento/solutions.jpg",
  },
  {
   title: "Transparent pricing",
   description: "No hidden costs",
-  label: "What you get",
+  
   img: "/bento/legit_pricing.jpg",
  },
  {
   title: "Regular communication",
   description: "Progress updates",
-  label: "What you get",
+  
    img: "/bento/Project_updates.png",
  },
  {
   title: "Post-launch support",
   description: "Maintenance included",
-  label: "What you get",
+  
   img: "/bento/support_maintainence.jpg",
  },
  {
   title: "Scalable architecture",
   description: "Future ready systems",
-  label: "What you get",
+  
   img: "/bento/growth.jpg",
  },
 
  {
   title: " Layout & Wireframe",
   description: "Planning structure & flow",
-  label: "Process",
+  
    img: "/bento/layout.jpg",
  },
  {
   title: "UI / UX Design",
   description: "Visual experience",
-  label: "Process",
+  
   img: "/bento/ui-ux.jpg",
  },
  {
   title: "Development",
   description: "Clean maintainable code",
-  label: "Process",
+  
   img: "/bento/development.jpg",
  },
  {
   title: " Deployment & QA",
   description: "Testing & release",
-  label: "Process",
+  
   img: "/bento/qa.jpg",
  },
  {
   title: "Security & Maintenance",
   description: "Ongoing protection",
-  label: "Process",
+  
   img: "/bento/cyber-security.jpg",
  },
 ];

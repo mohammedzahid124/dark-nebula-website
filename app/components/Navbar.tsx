@@ -24,7 +24,10 @@ export default function Navbar() {
         const element = document.getElementById(item.id);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
             setActiveSection(item.id);
             break;
           }
@@ -48,15 +51,15 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Animated Logo */}
           <div
-  onClick={() => scrollToSection("home")}
-  role="button"
-  tabIndex={0}
-  className="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity"
->
-  <div className="relative w-12 h-12 flex items-center justify-center">
-     {/* Nebula Core Pulse */}
-  <div
-    className="
+            onClick={() => scrollToSection("home")}
+            role="button"
+            tabIndex={0}
+            className="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity"
+          >
+            <div className="relative w-12 h-12 flex items-center justify-center">
+              {/* Nebula Core Pulse */}
+              <div
+                className="
       absolute inset-0
       rounded-full
       bg-purple-500/40
@@ -64,11 +67,11 @@ export default function Navbar() {
       animate-pulse-energy
       pointer-events-none
     "
-  />
+              />
 
-  {/* Saturn Elliptical Ring */}
-  <div
-    className="
+              {/* Saturn Elliptical Ring */}
+              <div
+                className="
       absolute
       w-20 h-20
       scale-y-[0.35]
@@ -78,38 +81,36 @@ export default function Navbar() {
       animate-spin-saturn
       pointer-events-none
     "
-  />
+              />
 
-  {/* Spark Particles */}
-  <div className="absolute w-20 h-20 scale-y-[0.35] rotate-[-20deg] pointer-events-none">
-    <span className="spark spark-1" />
-    <span className="spark spark-2" />
-    <span className="spark spark-3" />
-  </div>
+              {/* Spark Particles */}
+              <div className="absolute w-20 h-20 scale-y-[0.35] rotate-[-20deg] pointer-events-none">
+                <span className="spark spark-1" />
+                <span className="spark spark-2" />
+                <span className="spark spark-3" />
+              </div>
 
-    {/* Logo */}
-    <img
-      src="/go.png"
-      alt="Logo"
-      className="relative z-10 w-10 h-10 animate-spin-slow transition-transform duration-500"
-    />
-  </div>
+              {/* Logo */}
+              <img
+                src="/go.png"
+                alt="Logo"
+                className="relative z-10 w-10 h-10 animate-spin-slow transition-transform duration-500"
+              />
+            </div>
 
-  <GradientText
-    colors={["#c2bddaff", "#FF9FFC", "#0cb9dcff"]}
-    animationSpeed={3}
-    showBorder={false}
-    className="
+            <GradientText
+              colors={["#c2bddaff", "#FF9FFC", "#0cb9dcff"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="
       text-2xl sm:text-3xl md:text-4xl
       font-bold uppercase tracking-widest
       [font-family:var(--font-orbitron)]
     "
-  >
-    DarkNebula
-  </GradientText>
-</div>
-
-
+            >
+              DarkNebula
+            </GradientText>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
@@ -134,9 +135,9 @@ export default function Navbar() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <button
-onClick={() => scrollToSection("partnership")}
-className="relative px-6 py-2 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold overflow-hidden group"
->
+              onClick={() => scrollToSection("partnership")}
+              className="relative px-6 py-2 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold overflow-hidden group"
+            >
               <span className="relative z-10">Get Started</span>
               <span className="absolute inset-0 bg-linear-to-r from-cyan-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
             </button>
@@ -197,15 +198,11 @@ className="relative px-6 py-2 bg-linear-to-r from-purple-500 to-cyan-500 text-wh
               >
                 Contact
               </button>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white text-left py-2 transition-colors"
+              
+              <button
+                onClick={() => scrollToSection("partnership")}
+                className="w-full px-4 py-2 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold"
               >
-                LinkedIn
-              </a>
-              <button className="w-full px-4 py-2 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold">
                 Get Started
               </button>
             </div>

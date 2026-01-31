@@ -227,6 +227,19 @@ textarea:focus {
 }
 
 /* ===== DARK NEBULA EFFECTS ===== */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
 
 .nebula {
   position: absolute;

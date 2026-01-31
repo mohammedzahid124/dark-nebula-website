@@ -4,6 +4,7 @@ import Hyperspeed from "@/components/Hyperspeed";
 import Balatro from "@/components/Balatro";
 import LiquidChrome from "@/components/LiquidChrome";
 
+
 const starterBasePrice = "$240";
 const starterBase1Price = "$600";
 
@@ -64,7 +65,8 @@ export default function FeaturedProject() {
             Become a Partner
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Work with us on a long-term basis. Choose a partnership plan that aligns with your business needs.
+            Work with us on a long-term basis. Choose a partnership plan that
+            aligns with your business needs.
           </p>
         </div>
 
@@ -153,21 +155,28 @@ export default function FeaturedProject() {
                 </>
               )}
 
-
               {/* Card content */}
               <div className="relative z-20 p-8">
-                <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  {plan.name}
+                </h3>
                 <p className="text-gray-400 text-sm mb-6">{plan.description}</p>
 
                 <div className="mb-8">
                   {plan.priceLabel ? (
                     <div className="leading-tight">
-                      <div className="text-sm text-gray-400">{plan.priceLabel}</div>
-                      <div className="text-4xl font-bold text-white">{plan.priceValue}</div>
+                      <div className="text-sm text-gray-400">
+                        {plan.priceLabel}
+                      </div>
+                      <div className="text-4xl font-bold text-white">
+                        {plan.priceValue}
+                      </div>
                     </div>
                   ) : (
                     <div>
-                      <span className="text-4xl font-bold text-white">{plan.price}</span>
+                      <span className="text-4xl font-bold text-white">
+                        {plan.price}
+                      </span>
                       <span className="text-gray-400 ml-2">{plan.period}</span>
                     </div>
                   )}
@@ -186,21 +195,7 @@ export default function FeaturedProject() {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="bg-linear-to-r from-purple-900/20 to-cyan-900/20 border border-purple-500/30 rounded-2xl p-12 text-center">
-          <h3 className="text-3xl font-bold text-white mb-4">Ready to Transform Your Vision?</h3>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Let's discuss how Dark Nebula can help you build the future. Schedule a free consultation with our team.
-          </p>
-          <button
-            onClick={() =>
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="px-8 py-3 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold"
-          >
-            Schedule a Call
-          </button>
-        </div>
+        
       </div>
     </section>
   );

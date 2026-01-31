@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Mail, Instagram, Linkedin, Twitter, Send } from "lucide-react";
 import Lightning from "@/components/Lightning";
-
+import { Phone } from "lucide-react";
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -61,9 +61,62 @@ export default function Contact() {
   return (
     <section id="contact" className="relative min-h-screen bg-black py-20 px-4 overflow-hidden">
       <div className="relative z-10 max-w-4xl mx-auto">
+        {/* CTA Section */}
+<div className="relative max-w-4xl mx-auto rounded-2xl p-[1px] mb-14 overflow-hidden">
 
+  {/* Animated Border Glow */}
+  <div className="absolute inset-0 bg-linear-to-r from-purple-600 via-cyan-500 to-purple-600 animate-[spin_8s_linear_infinite]" />
+
+  {/* Floating Nebula Orbs */}
+  <div className="absolute inset-0 overflow-hidden">
+    {Array.from({ length: 12 }).map((_, i) => (
+      <div
+        key={i}
+        className="absolute w-2 h-2 rounded-full bg-purple-400 opacity-40 blur-sm animate-float"
+        style={{
+          left: Math.random() * 100 + "%",
+          top: Math.random() * 100 + "%",
+          animationDelay: `${Math.random() * 4}s`,
+        }}
+      />
+    ))}
+  </div>
+
+  {/* Inner Content */}
+  <div className="relative bg-black/90 rounded-2xl px-12 py-10 text-center">
+
+    <h3 className="text-3xl font-bold text-white mb-4">
+      Ready to Transform Your Vision?
+    </h3>
+
+    <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+      Let's discuss how Dark Nebula can help you build the future.
+      Schedule a free consultation with our team.
+    </p>
+
+    <a
+      href="tel:+918927388514"
+      className="inline-flex items-center gap-2 px-8 py-3 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all font-semibold mb-4"
+    >
+      Give us a Call
+    </a>
+
+    <div className="flex justify-center gap-8 text-cyan-400">
+      <a href="tel:+918927388514" className="flex items-center gap-2 hover:text-white transition">
+        <Phone className="w-4 h-4" /> +91 8927388514
+      </a>
+
+      <a href="tel:+918123514466" className="flex items-center gap-2 hover:text-white transition">
+        <Phone className="w-4 h-4" /> +91 8123514466
+      </a>
+    </div>
+  </div>
+</div>
+
+        
         {/* CONTACT CARDS */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+<div className="mt-12 grid md:grid-cols-3 gap-8 mb-16">
+
           {contactInfo.map((info, idx) => {
             const Icon = info.icon;
             return (
