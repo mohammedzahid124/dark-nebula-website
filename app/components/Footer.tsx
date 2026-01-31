@@ -3,12 +3,25 @@
 import { Instagram, Linkedin, Twitter } from "lucide-react";
 import FuturisticLogo from "./FuturisticLogo";
 import { useState } from "react";
+type FooterLink = {
+  label: string;
+  href?: string;
+  target?: string;
+};
+
+type FooterColumn = {
+  title: string;
+  links: FooterLink[];
+};
+
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
-  const footerLinks = [
+
+ const footerLinks: FooterColumn[] = [
+
     {
       title: "Services",
       links: [
