@@ -1,37 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Github, Linkedin, Twitter, Send } from "lucide-react";
-import Lightning from "@/components/Lightning"; // ✅ ADDED
+import { Mail, Instagram, Linkedin, Twitter, Send } from "lucide-react";
+import Lightning from "@/components/Lightning";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
-    alert("Thanks for reaching out! We'll be in touch soon.");
-    setFormData({ name: "", email: "", company: "", message: "" });
-  };
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "hello@darknebula.dev",
-      link: "mailto:hello@darknebula.dev",
+      value: "darknebulabs@gmail.com",
+      link: "mailto:darknebulabs@gmail.com",
       color: "from-red-500 to-pink-600",
       hoverColor: "hover:shadow-red-500/50",
     },
@@ -39,44 +21,67 @@ export default function Contact() {
       icon: Linkedin,
       label: "LinkedIn",
       value: "Dark Nebula",
-      link: "https://linkedin.com",
+      link: "https://www.linkedin.com/in/dark-nebula-1418723a9/",
       color: "from-cyan-500 to-blue-600",
       hoverColor: "hover:shadow-cyan-500/50",
     },
     {
-      icon: Github,
-      label: "GitHub",
-      value: "dark-nebula",
-      link: "https://github.com",
-      color: "from-purple-500 to-indigo-600",
-      hoverColor: "hover:shadow-purple-500/50",
+      icon: Instagram,
+      label: "Instagram",
+      value: "@darknebulabs",
+      link: "https://www.instagram.com/darknebulabs/",
+      color: "from-pink-500 via-purple-500 to-orange-500",
+      hoverColor: "hover:shadow-pink-500/50",
     },
   ];
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const response = await fetch("https://formspree.io/f/xnjvyjej", {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" },
+    });
+
+    setLoading(false);
+
+    if (response.ok) {
+      setSubmitted(true);
+      form.reset();
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  }
+
   return (
-    <section id="contact" className="relative min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="contact" className="relative min-h-screen bg-black py-20 px-4 overflow-hidden">
       <div className="relative z-10 max-w-4xl mx-auto">
 
-        {/* Contact Info Cards */}
+        {/* CONTACT CARDS */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {contactInfo.map((info, idx) => {
-            const IconComponent = info.icon;
+            const Icon = info.icon;
             return (
               <a
                 key={idx}
                 href={info.link}
-                target="_blank"
+                target={info.link.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className={`group relative overflow-hidden rounded-2xl border border-white/20 p-8 transition-all duration-300 ${info.hoverColor} hover:shadow-lg hover:border-white/40`}
+                className={`group relative overflow-hidden rounded-2xl border border-white/20 p-8 transition-all duration-300 ${info.hoverColor} hover:shadow-lg`}
               >
-                <div className={`absolute inset-0 bg-linear-to-br ${info.color} opacity-0 group-hover:opacity-5 transition-opacity`} />
+                <div className={`absolute inset-0 bg-linear-to-br ${info.color} opacity-0 group-hover:opacity-5`} />
                 <div className="absolute inset-0 bg-black/60 backdrop-blur-xl" />
 
-                <div className="relative z-10">
-                  <div className={`inline-block p-3 rounded-xl bg-linear-to-br ${info.color} bg-opacity-10 mb-4`}>
-                    <IconComponent className="w-6 h-6 text-white" />
+                <div className="relative z-10 flex flex-col items-center justify-center text-center h-full">
+                  <div className={`mb-4 flex items-center justify-center p-4 rounded-xl bg-linear-to-br ${info.color}`}>
+                    <Icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{info.label}</h3>
+                  <h3 className="text-lg font-semibold text-white mb-1">{info.label}</h3>
                   <p className="text-cyan-400 text-sm">{info.value}</p>
                 </div>
               </a>
@@ -84,96 +89,154 @@ export default function Contact() {
           })}
         </div>
 
-        {/* 🔥 CONTACT FORM */}
-        <div className="relative rounded-3xl border border-white/20 overflow-hidden min-h-[650px]">
+        {/* FORM */}
+<div className="
+  relative
+  rounded-3xl
+  border border-white/20
+  overflow-hidden
+  min-h-[600px]
+shadow-[8px_24px_47px_20px_rgba(83,_13,_105,_0.76)]">
 
-          {/* ⚡ LIGHTNING BACKGROUND */}
           <div className="absolute inset-0 z-0 opacity-80 mix-blend-screen">
-            <Lightning
-              hue={260}
-              xOffset={0.3}
-              speed={3}
-              intensity={1}
-              size={2}
-            />
+            <Lightning hue={260} xOffset={0.3} speed={3} intensity={1} size={2} />
           </div>
 
-          {/* Gradient glow */}
+          <div className="relative z-20 p-10">
+            {submitted ? (
+              <div className="text-center py-32">
+                <h2 className="text-3xl font-bold text-white mb-4">
+                  Thank you for reaching out!
+                </h2>
+                <p className="text-cyan-400">
+                  We’ll get back to you shortly 🚀
+                </p>
+              </div>
+            ) : (
+              <>
+                <h3 className="text-2xl font-bold text-white mb-8">
+                  Send us a message
+                </h3>
 
-          {/* Glass overlay (lighter so lightning is visible) */}
+                <form onSubmit={handleSubmit} className="space-y-6">
 
-          {/* FORM CONTENT — UNCHANGED */}
-          <div className="relative z-20 p-8 md:p-12">
-            <h3 className="text-2xl font-bold text-white mb-8">Send us a message</h3>
+                  {/* NAME + EMAIL */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <input
+                      name="name"
+                      required
+                      maxLength={20}
+                      placeholder="Your Name"
+                      title="Maximum 20 characters"
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
+                    />
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-white font-semibold mb-3">Your Name</label>
+
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="Email Address"
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-[110px_1fr] gap-4">
+                    {/* Country Code */}
+                    <select
+                      name="country_code"
+                      required
+                      className="w-28 bg-white/10 border border-white/20 rounded-lg px-3 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    >
+                      <option value="" className="bg-black text-gray-400">
+                        Code
+                      </option>
+
+                      <option value="+91" className="bg-black text-white">
+                        🇮🇳 +91
+                      </option>
+
+                      <option value="+966" className="bg-black text-white">
+                        🇸🇦 +966
+                      </option>
+
+                      <option value="+971" className="bg-black text-white">
+                        🇦🇪 +971
+                      </option>
+
+                      <option value="+1" className="bg-black text-white">
+                        🇺🇸 +1
+                      </option>
+
+                      <option value="+44" className="bg-black text-white">
+                        🇬🇧 +44
+                      </option>
+
+                      <option value="+61" className="bg-black text-white">
+                        🇦🇺 +61
+                      </option>
+                    </select>
+
+
+                    {/* Phone Number */}
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      maxLength={15}
+                      placeholder="Contact Number"
+                      className="
+      w-full
+      bg-white/10
+      border border-white/20
+      rounded-lg
+      px-4 py-3
+      text-white
+      focus:outline-none
+      focus:border-cyan-400
+    "
+                    />
+                  </div>
+
+
+
+
+
+                  {/* COMPANY */}
                   <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
+                    name="company"
+                    maxLength={20}
+                    placeholder="Company (optional)"
+                    title="Maximum 20 characters"
                     className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
                   />
-                </div>
-                <div>
-                  <label className="block text-white font-semibold mb-3">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+
+                  {/* MESSAGE */}
+                  <textarea
+                    name="message"
                     required
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
+                    rows={6}
+                    maxLength={500}
+                    placeholder="Your Message (max 500 characters)"
+                    title="Maximum 500 characters"
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white resize-none"
                   />
-                </div>
-              </div>
 
-              <div>
-                <label className="block text-white font-semibold mb-3">Company</label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white"
-                />
-              </div>
+                  <button
+                    disabled={loading}
+                    className="w-full py-4 bg-linear-to-r from-cyan-500 to-purple-500 rounded-lg text-white font-semibold flex justify-center items-center gap-2 hover:scale-105 transition disabled:opacity-50"
+                  >
+                    {loading ? "Sending..." : "Send Message"}
+                    <Send className="w-5 h-5" />
+                  </button>
 
-              <div>
-                <label className="block text-white font-semibold mb-3">Message</label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-4 bg-linear-to-r from-cyan-500 to-purple-500 text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:scale-105 transition"
-              >
-                <span>Send Message</span>
-                <Send className="w-5 h-5" />
-              </button>
-            </form>
+                </form>
+              </>
+            )}
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="mt-16 text-center">
-          <div className="flex justify-center gap-4">
-            <Twitter className="text-white" />
-            <Github className="text-white" />
-            <Linkedin className="text-white" />
-          </div>
-        </div>
+      
 
       </div>
     </section>

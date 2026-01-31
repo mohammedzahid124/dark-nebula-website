@@ -443,10 +443,10 @@ hover:scale-105`}
         <div className="mt-24 pt-16 border-t border-white/10">
           <div className="grid md:grid-cols-4 gap-8">
             {[
-              { number: "500+", label: "Security Audits" },
-              { number: "200+", label: "AI Projects" },
-              { number: "1M+", label: "Data Points Processed" },
-              { number: "99.9%", label: "System Uptime" },
+              { number: "15+", label: "Projects Completed" },
+              { number: "5+", label: "Active Clients" },
+              { number: "3+", label: "Core Services" },
+              { number: "100%", label: "Client Satisfaction" },
             ].map((stat, idx) => (
               <div key={idx} className="text-center">
                 <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-2">
@@ -463,48 +463,48 @@ hover:scale-105`}
           <div className="relative w-full max-w-3xl h-[90vh] bg-black border border-white/20 rounded-xl sm:rounded-2xl flex flex-col">
             {/* Close */}
             <button
-onClick={() => setActiveService(null)}
-className="absolute top-3 right-3 z-50 h-10 w-10 rounded-full bg-black/80 border border-white/20 text-white flex items-center justify-center text-lg hover:bg-white/10"
->
-✕
-</button>
+              onClick={() => setActiveService(null)}
+              className="absolute top-3 right-3 z-50 h-10 w-10 rounded-full bg-black/80 border border-white/20 text-white flex items-center justify-center text-lg hover:bg-white/10"
+            >
+              ✕
+            </button>
 
-           <div className="flex-1 overflow-y-auto p-6 sm:p-10 overscroll-contain">
+            <div className="flex-1 overflow-y-auto p-6 sm:p-10 overscroll-contain">
 
 
-            <h2 className="text-3xl font-bold mb-4 bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              {activeService.title}
-            </h2>
+              <h2 className="text-3xl font-bold mb-4 bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                {activeService.title}
+              </h2>
 
-            <p className="text-gray-300 mb-6">{activeService.description}</p>
+              <p className="text-gray-300 mb-6">{activeService.description}</p>
 
-            <h4 className="text-white font-semibold mb-2">How we deliver</h4>
+              <h4 className="text-white font-semibold mb-2">How we deliver</h4>
 
-            <ul className="grid grid-cols-2 gap-3 text-sm text-gray-300">
-              {activeService.features.map((f: string, i: number) => (
-                <li key={i}>✓ {f}</li>
-              ))}
-            </ul>
+              <ul className="grid grid-cols-2 gap-3 text-sm text-gray-300">
+                {activeService.features.map((f: string, i: number) => (
+                  <li key={i}>✓ {f}</li>
+                ))}
+              </ul>
 
-            <div className="mt-6 text-gray-400 text-sm leading-relaxed whitespace-pre-line">
-              {activeService.details}
-            </div>
-            <div className="mt-8 relative rounded-xl p-[1px] bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500">
-              <div className="bg-black/90 rounded-xl p-5 backdrop-blur">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xl">💡</span>
-                  <span className="text-sm font-semibold text-cyan-400 uppercase tracking-wide">
-                    Real‑life example
-                  </span>
+              <div className="mt-6 text-gray-400 text-sm leading-relaxed whitespace-pre-line">
+                {activeService.details}
+              </div>
+              <div className="mt-8 relative rounded-xl p-[1px] bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500">
+                <div className="bg-black/90 rounded-xl p-5 backdrop-blur">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xl">💡</span>
+                    <span className="text-sm font-semibold text-cyan-400 uppercase tracking-wide">
+                      Real‑life example
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-gray-200 italic leading-relaxed whitespace-pre-line">
+                    {activeService.example}
+                  </p>
                 </div>
-
-                <p className="text-sm text-gray-200 italic leading-relaxed whitespace-pre-line">
-                  {activeService.example}
-                </p>
               </div>
             </div>
           </div>
-        </div>
         </div>
 
       )}
