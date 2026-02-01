@@ -14,14 +14,11 @@ type FooterColumn = {
   links: FooterLink[];
 };
 
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
-
- const footerLinks: FooterColumn[] = [
-
+  const footerLinks: FooterColumn[] = [
     {
       title: "Services",
       links: [
@@ -66,11 +63,43 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-black border-t border-white/10 overflow-hidden">
+    <footer
+  className="relative border-t border-white/10 overflow-hidden bg-cover bg-center"
+  style={{ backgroundImage: "url('/birth_of_star.jpg')" }}
+>
+    {/* Nebula Wave Divider */}
+<div className="absolute -top-[180px] left-0 w-full overflow-hidden leading-none rotate-180 z-20">
+
+  <svg
+    viewBox="0 0 1200 120"
+    preserveAspectRatio="none"
+    className="w-[200%] h-[180px] animate-wave"
+  >
+    {/* Layer 1 */}
+    <path
+      d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+      fill="rgba(0,0,0,0.95)"
+    />
+
+    {/* Glow Layer */}
+    <path
+      d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86"
+      fill="none"
+      stroke="rgba(139,92,246,0.4)"
+      strokeWidth="2"
+    />
+  </svg>
+</div>
+
+
+      {/* Curved Section Divider */}
+      
       {/* Futuristic animated background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Cosmic gradient background */}
-        <div className="absolute inset-0 bg-linear-to-b from-purple-900/20 via-black to-cyan-900/20" />
+      
+      <div className="absolute inset-0 bg-black/20">
+
+
+        
 
         {/* Animated particles */}
         <div className="absolute inset-0">
@@ -104,8 +133,19 @@ export default function Footer() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative z-10 pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+
+
+        <div className="max-w-6xl mx-auto rounded-3xl p-10
+
+ bg-clip-padding
+ bg-white/3 backdrop-blur-[2px]
+
+ backdrop-saturate-100
+ border border-white/10
+ shadow-xl">
+
+
           {/* Main Footer Content */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
             {/* Brand */}
@@ -118,7 +158,7 @@ export default function Footer() {
                   DarkNebula
                 </span>
               </button>
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-200 text-sm">
                 Pioneering the future with advanced technology, innovation, and
                 transformative solutions.
               </p>
@@ -128,7 +168,8 @@ export default function Footer() {
             {/* Footer Links */}
             {footerLinks.map((column, idx) => (
               <div key={idx}>
-                <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+                <h4 className="text-white/90 font-semibold mb-4 text-sm uppercase tracking-wider">
+
                   {column.title}
                 </h4>
 
@@ -140,7 +181,7 @@ export default function Footer() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-cyan-400 transition-colors text-sm text-left leading-relaxed block max-w-xs"
+                          className="text-gray-200 hover:text-cyan-400 transition-colors text-sm text-left leading-relaxed block max-w-xs"
                         >
                           {link.label}
                         </a>
@@ -150,7 +191,7 @@ export default function Footer() {
                             if (link.target) scrollToSection(link.target);
                             else setActiveModal(link.label);
                           }}
-                          className="text-gray-400 hover:text-cyan-400 transition-colors text-sm text-left"
+                          className="text-gray-200 hover:text-cyan-400 transition-colors text-sm text-left"
                         >
                           {link.label}
                         </button>
@@ -163,12 +204,12 @@ export default function Footer() {
           </div>
 
           {/* Divider */}
-          <div className="border-t border-white/10 my-8"></div>
+          
 
           {/* Bottom Footer */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-200 text-sm">
                 &copy; {currentYear} Dark Nebula. All rights reserved.
               </p>
             </div>
