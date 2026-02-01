@@ -10,49 +10,90 @@ const starterBase1Price = "$600";
 
 export default function FeaturedProject() {
   const partnershipPlans = [
-    {
-      name: "Starter",
-      priceLabel: "Starting",
-      priceValue: `@ ${starterBasePrice}`,
-      description: "Perfect for early-stage startups",
-      features: [
-        "Up to 40 hours/month",
-        "Bi-weekly check-ins",
-        "Technical consultations",
-        "Bug fixes & support",
-      ],
-      highlighted: false,
-    },
-    {
-      name: "Professional",
-      priceLabel: "Starting",
-      priceValue: `@ ${starterBase1Price}`,
-      description: "Ideal for growing businesses",
-      features: [
-        "Up to 80 hours/month",
-        "Weekly check-ins",
-        "Priority support",
-        "Feature development",
-        "Performance optimization",
-      ],
-      highlighted: true,
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      period: "pricing",
-      description: "For large-scale projects",
-      features: [
-        "Unlimited hours",
-        "Dedicated full team",
-        "Daily coordination",
-        "24/7 support",
-        "Custom solutions",
-        "SLA guaranteed",
-      ],
-      highlighted: false,
-    },
-  ];
+{
+ name: "Web Starter",
+ priceLabel: "Starting",
+ priceValue: "@ $90",
+ description: "Best for portfolios & basic business websites",
+ features: [
+   "Up to 5 pages",
+   "Responsive UI",
+   "Contact form",
+   "Basic SEO",
+   "Deployment support",
+ ],
+},
+{
+ name: "Business Pro",
+ priceLabel: "Starting",
+ priceValue: "@ $150",
+ description: "For growing brands & startups",
+ features: [
+   "Up to 10 pages",
+   "Admin panel",
+   "UI/UX design",
+   "API integrations",
+   "Performance optimization",
+ ],
+},
+{
+ name: "Enterprise / Custom",
+ price: "Custom",
+ period: "pricing",
+ description: "Large scale applications",
+ features: [
+   "Full-stack development",
+   "Dedicated team",
+   "Cloud deployment",
+   "Security setup",
+   "Long-term support",
+ ],
+},
+
+// 4 — matches Enterprise background
+{
+ name: "ERP / Internal Systems",
+ priceLabel: "Starting",
+ priceValue: "@ $900",
+ period: "pricing",
+ description: "Custom ERP & dashboards",
+ features: [
+   "Role based access",
+   "Reports & analytics",
+   "Employee modules",
+   "Cloud deployment",
+ ],
+},
+
+// 5 — matches Professional background
+{
+ name: "Multi‑Vendor Platform",
+ price: "Custom",
+ period: "pricing",
+ description: "Multi seller ecommerce systems",
+ features: [
+   "Vendor dashboards",
+   "Payment gateway",
+   "Order management",
+   "Admin controls",
+ ],
+},
+
+// 6 — matches Starter background
+{
+ name: "E‑Commerce Launch",
+ priceLabel: "Starting",
+ priceValue: "@ $550",
+ description: "Online stores & product platforms",
+ features: [
+   "Product listings",
+   "Cart & checkout",
+   "Payment integration",
+   "Admin panel",
+ ],
+},
+];
+
 
   return (
     <section
@@ -78,7 +119,8 @@ export default function FeaturedProject() {
               className="relative overflow-hidden rounded-2xl transition-all duration-300"
             >
               {/* 🔴 BALATRO — Starter background */}
-              {plan.name === "Starter" && (
+              {["Web Starter","E‑Commerce Launch"].includes(plan.name) && (
+
                 <>
                   <div className="absolute inset-0 z-0">
                     <Balatro
@@ -95,7 +137,8 @@ export default function FeaturedProject() {
               )}
 
               {/* 🌊 LIQUIDCHROME — Professional background */}
-              {plan.name === "Professional" && (
+              {["Business Pro","Multi‑Vendor Platform"].includes(plan.name) && (
+
                 <>
                   <div className="absolute inset-0 z-0">
                     <LiquidChrome
@@ -110,7 +153,8 @@ export default function FeaturedProject() {
               )}
 
               {/* 🚀 HYPERSPEED — Enterprise background */}
-              {plan.name === "Enterprise" && (
+              {["Enterprise / Custom","ERP / Internal Systems"].includes(plan.name) && (
+
                 <>
                   <div className="absolute inset-0 z-0">
                     <Hyperspeed
