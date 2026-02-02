@@ -308,6 +308,8 @@ const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
     };
 
     const handleClick = (e: MouseEvent) => {
+  e.stopPropagation();
+
       if (!clickEffect) return;
 
       const rect = element.getBoundingClientRect();

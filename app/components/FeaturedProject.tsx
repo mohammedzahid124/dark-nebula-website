@@ -7,8 +7,27 @@ import PrismaticBurst from "@/components/PrismaticBurst";
 import Beams from "@/components/Beams";
 import Prism from "@/components/Prism";
 
+import { useEffect, useState } from "react";
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 768px)");
+    setIsMobile(media.matches);
+
+    const listener = () => setIsMobile(media.matches);
+    media.addEventListener("change", listener);
+
+    return () => media.removeEventListener("change", listener);
+  }, []);
+
+  return isMobile;
+}
 
 export default function FeaturedProject() {
+  const isMobile = useIsMobile();
+
   const partnershipPlans = [
     {
       name: "Web Starter",
@@ -78,6 +97,22 @@ export default function FeaturedProject() {
   return (
     <section className="min-h-screen bg-black py-24 px-4">
       <div className="max-w-7xl mx-auto">
+       <div className="text-center mb-16">
+  <h2 className="
+    text-4xl md:text-6xl font-extrabold
+    bg-gradient-to-r from-purple-400 via-fuchsia-500 to-cyan-400
+    bg-clip-text text-transparent
+    drop-shadow-[0_0_25px_rgba(168,85,247,0.35)]
+  ">
+    Become a Partner
+  </h2>
+
+  <p className="mt-4 text-gray-400 text-lg">
+    Let’s build something extraordinary together
+  </p>
+</div>
+
+
         <div className="grid md:grid-cols-3 gap-10">
           {partnershipPlans.map((plan, idx) => (
             <div
@@ -87,83 +122,148 @@ export default function FeaturedProject() {
                 shadow-2xl backdrop-blur-sm
                 md:scale-[1.05]
 
-                ${
-                  plan.name === "ERP / Internal Systems"
-                    ? "md:col-start-2 md:-translate-x-55"
-                    : ""
+                ${plan.name === "ERP / Internal Systems"
+                  ? "md:col-start-2 md:-translate-x-55"
+                  : ""
                 }
 
-                ${
-                  plan.name === "Multi-Vendor Platform"
-                    ? "md:col-start-3 md:-translate-x-55"
-                    : ""
+                ${plan.name === "Multi-Vendor Platform"
+                  ? "md:col-start-3 md:-translate-x-55"
+                  : ""
                 }
               `}
             >
               {/* 🔴 Web Starter */}
               {plan.name === "Web Starter" && (
                 <>
-                  <div className="absolute inset-0 z-0">
-                    <Balatro
-                      isRotate={false}
-                      mouseInteraction
-                      pixelFilter={745}
-                      color1="#DE443B"
-                      color2="#006BB4"
-                      color3="#162325"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-black/45 z-10" />
+                  {!isMobile ? (
+                    <>
+                      <div className="absolute inset-0 z-0">
+                        <Balatro
+                          isRotate={false}
+                          mouseInteraction
+                          pixelFilter={745}
+                          color1="#DE443B"
+                          color2="#006BB4"
+                          color3="#162325"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-black/45 z-10" />
+                    </>
+                  ) : (
+                    <>
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover z-0"
+                        src="cosmic.mp4"
+                      />
+                      <div className="absolute inset-0 bg-black/55 z-10" />
+                    </>
+                  )}
                 </>
               )}
+
 
               {/* 🌊 Business Pro */}
               {plan.name === "Business Pro" && (
                 <>
-                  <div className="absolute inset-0 z-0">
-                    <LiquidChrome
-                      baseColor={[0.25, 0.05, 0.15]}
-                      speed={1}
-                      amplitude={0.6}
-                      interactive
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-black/45 z-10" />
+                  {!isMobile ? (
+                    <>
+                      <div className="absolute inset-0 z-0">
+                        <LiquidChrome
+                          baseColor={[0.25, 0.05, 0.15]}
+                          speed={1}
+                          amplitude={0.6}
+                          interactive
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-black/45 z-10" />
+                    </>
+                  ) : (
+                    <>
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover z-0"
+                        src="business.mp4"
+                      />
+                      <div className="absolute inset-0 bg-black/55 z-10" />
+                    </>
+                  )}
                 </>
               )}
 
               {/* 🚀 Enterprise */}
               {plan.name === "Enterprise / Custom" && (
                 <>
-                  <div className="absolute inset-0 z-0">
-                    <Hyperspeed />
-                  </div>
-                  <div className="absolute inset-0 bg-black/40 z-10" />
+                  {!isMobile ? (
+                    <>
+                      <div className="absolute inset-0 z-0">
+                        <Hyperspeed />
+                      </div>
+                      <div className="absolute inset-0 bg-black/40 z-10" />
+                    </>
+                  ) : (
+                    <>
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover z-0"
+                        src="enterprise.mp4"
+                      />
+                      <div className="absolute inset-0 bg-black/55 z-10" />
+                    </>
+                  )}
                 </>
               )}
 
               {/* 🌈 ERP */}
               {plan.name === "ERP / Internal Systems" && (
                 <>
-                  <div className="absolute inset-0 z-0">
-                    <Beams
-                      beamWidth={3}
-                      beamHeight={30}
-                      beamNumber={20}
-                      lightColor="#ffffff"
-                      speed={2}
-                      noiseIntensity={1.75}
-                      scale={0.2}
-                      rotation={30}
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-black/55 z-10" />
+                  {!isMobile ? (
+                    <>
+                      <div className="absolute inset-0 z-0">
+                        <Beams
+                          beamWidth={3}
+                          beamHeight={30}
+                          beamNumber={20}
+                          lightColor="#ffffff"
+                          speed={2}
+                          noiseIntensity={1.75}
+                          scale={0.2}
+                          rotation={30}
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-black/55 z-10" />
+                    </>
+                  ) : (
+                    <>
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover z-0"
+                        src="erp.mp4"
+                      />
+                      <div className="absolute inset-0 bg-black/55 z-10" />
+                    </>
+                  )}
                 </>
               )}
 
               {/* 🔮 Multi-Vendor */}
               {plan.name === "Multi-Vendor Platform" && (
                 <>
+                  {!isMobile ? (
+                    <>
                   <div className="absolute inset-0 z-0">
                     <Prism
                       animationType="rotate"
@@ -178,6 +278,20 @@ export default function FeaturedProject() {
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/55 z-10" />
+                </>
+              ): (
+                    <>
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover z-0"
+                        src="vendor.mp4"
+                      />
+                      <div className="absolute inset-0 bg-black/55 z-10" />
+                    </>
+                  )}
                 </>
               )}
 
