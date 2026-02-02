@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Mail, Instagram, Linkedin, Twitter, Send } from "lucide-react";
 import Lightning from "@/components/Lightning";
 import { Phone } from "lucide-react";
+import { MessageCircle } from "lucide-react";
+
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -18,13 +21,14 @@ export default function Contact() {
       hoverColor: "hover:shadow-red-500/50",
     },
     {
-      icon: Linkedin,
-      label: "LinkedIn",
-      value: "Dark Nebula",
-      link: "https://www.linkedin.com/in/dark-nebula-1418723a9/",
-      color: "from-cyan-500 to-blue-600",
-      hoverColor: "hover:shadow-cyan-500/50",
-    },
+  icon: MessageCircle, // lucide-react WhatsApp-style icon
+  label: "WhatsApp",
+  value: "+91 7624829233", // put your WhatsApp number
+  link: "https://wa.me/917624829233", // country code + number, no spaces
+  color: "from-green-500 to-emerald-600",
+  hoverColor: "hover:shadow-green-500/50",
+},
+
     {
       icon: Instagram,
       label: "Instagram",
