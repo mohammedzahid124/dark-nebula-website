@@ -155,9 +155,35 @@ export default function Contact() {
   min-h-[600px]
 shadow-[8px_24px_47px_20px_rgba(83,_13,_105,_0.76)]">
 
-          <div className="absolute inset-0 z-0 opacity-80 mix-blend-screen">
-            <Lightning hue={260} xOffset={0.3} speed={3} intensity={1} size={2} />
-          </div>
+          {/* BACKGROUND LAYER */}
+<div className="absolute inset-0 z-0 overflow-hidden">
+
+  {/* 📱 Mobile: Video background */}
+  <video
+    className="block md:hidden absolute inset-0 w-full h-full object-cover opacity-70"
+    autoPlay
+    loop
+    muted
+    playsInline
+  >
+    <source src="cont.mp4" type="video/mp4" />
+  </video>
+
+  {/* 💻 Desktop: Lightning effect */}
+  <div className="hidden md:block absolute inset-0 opacity-80 mix-blend-screen">
+    <Lightning
+      hue={260}
+      xOffset={0.3}
+      speed={3}
+      intensity={1}
+      size={2}
+    />
+  </div>
+
+  {/* Dark overlay for readability */}
+  <div className="absolute inset-0 bg-black/40" />
+</div>
+
 
           <div className="relative z-20 p-10">
             {submitted ? (
