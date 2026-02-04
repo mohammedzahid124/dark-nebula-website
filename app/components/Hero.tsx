@@ -57,15 +57,29 @@ export default function Hero() {
             </h2>
           </div>
         </div>
+        
+<div className="relative mb-8">
+  {/* Glow stays the same (optional: slightly reduce) */}
+  <div className="absolute inset-0 bg-linear-to-r from-purple-500 via-cyan-500 to-purple-500 rounded-2xl blur-2xl opacity-25" />
 
-        <div className="relative mb-8">
-          <div className="absolute inset-0 bg-linear-to-r from-purple-500 via-cyan-500 to-purple-500 rounded-2xl blur-2xl opacity-30" />
-          <p className="relative text-lg sm:text-xl md:text-2xl text-white font-semibold px-6 py-6 rounded-2xl bg-black/50 backdrop-blur-md border border-white/20 shadow-2xl">
-            Cutting-edge AI, cybersecurity, and data engineering.
-            <br />
-            Powering tomorrow's most ambitious companies.
-          </p>
-        </div>
+  <p
+    className="
+      relative
+      text-lg sm:text-xl md:text-2xl
+      text-white font-semibold
+      px-6 py-6
+      rounded-2xl
+      bg-black/30        /* ⬅ more transparent */
+      border border-white/15
+      shadow-xl         /* ⬅ softer shadow */
+    "
+  >
+    Cutting-edge AI, cybersecurity, and data engineering.
+    <br />
+    Powering tomorrow's most ambitious companies.
+  </p>
+</div>
+
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
           <button
