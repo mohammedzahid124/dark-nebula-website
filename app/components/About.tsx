@@ -2,8 +2,37 @@
 
 import Image from "next/image";
 import ElectricBorder from "./ElectricBorder";
+import { useEffect, useRef, useState } from "react";
+
+function useInView() {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect(); // run once
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, visible };
+}
+
 
 export default function About() {
+    const vision = useInView();
+  const mission = useInView();
+
   const founders = [
     {
       name: "Nashrat Jahan",
@@ -212,35 +241,107 @@ export default function About() {
           </div>
         </div>
 
-        {/* Mission Section */}
+{/* Vision & Mission Cards */}
+<div className="border-t border-white/10 pt-20 mb-24">
+<div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto items-stretch overflow-hidden">
 
-        <div className="border-t border-white/10 pt-20 mb-24">
-          <div className="relative group">
-            {/* Animated Background */}
-            <div className="absolute inset-0 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+<div
+  ref={vision.ref}
+  className={`relative z-10 group h-full opacity-0 ${
+    vision.visible ? "animate-slide-in-left opacity-100" : ""
+  }`}
+>
+  
+  {/* VIDEO */}
+  <div className="absolute inset-0 rounded-3xl overflow-hidden -z-30 bg-black">
+    <video
+  src="/b.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full h-full object-contain brightness-125 contrast-110"
+/>
 
-            <div className="relative bg-linear-to-r from-purple-500/10 to-cyan-500/10 border border-white/20 rounded-3xl p-8 md:p-12 group-hover:border-purple-500/50 transition-all duration-300 shadow-[0px_20px_207px_40px_rgba(165,39,255,0.48)]">
-              <h3 className="text-3xl font-bold text-white mb-6 text-center">
-                Our Philosophy
-              </h3>
-              <div className="max-w-4xl mx-auto">
-                <p className="text-gray-300 leading-relaxed text-center mb-6">
-                  We combine advanced AI capabilities with enterprise-grade
-                  backend engineering. Every system we build is designed for
-                  production from day one—scalable, secure, and measurable in
-                  business impact.
-                </p>
-                <p className="text-gray-300 leading-relaxed text-center">
-                  Our track record spans autonomous AI systems, cloud
-                  infrastructure, data engineering, and machine learning
-                  solutions delivered to international clients. We don't just
-                  code—we architect solutions that shape industries.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+  </div>
 
+  {/* DARK OVERLAY (NO BLUR) */}
+  <div className="absolute inset-0 rounded-3xl bg-black/25 -z-20" />
+
+  {/* CONTENT */}
+  <div className="relative z-10 h-full flex flex-col justify-center
+    bg-black/60
+    border border-white/20
+    rounded-3xl
+    p-10">
+   <h3 className="text-2xl font-bold text-cyan-400 mb-4 text-center">
+  Our Vision
+</h3>
+<p className="text-gray-300 text-center leading-relaxed">
+  To become a trusted technology partner shaping the future of digital systems
+  through intelligent, secure, and scalable solutions. We envision a world where
+  businesses operate with clarity, automation, and confidence—powered by
+  systems that are built to evolve, adapt, and lead in a rapidly changing
+  digital landscape.
+</p>
+
+  </div>
+</div>
+
+
+   {/* Mission Card */}
+<div
+  ref={mission.ref}
+  className={`relative group h-full opacity-0 ${
+    mission.visible
+      ? "animate-slide-in-right opacity-100 [animation-delay:200ms]"
+      : ""
+  }`}
+>
+  {/* VIDEO — isolated, NO blur */}
+  <div className="absolute inset-0 rounded-3xl overflow-hidden -z-30 bg-black flex items-center justify-center">
+    <video
+      src="/m.mp4"   // 👈 your mission video
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="w-full h-full object-contain brightness-125 contrast-110"
+    />
+  </div>
+
+  {/* DARK OVERLAY (NO BLUR) */}
+  <div className="absolute inset-0 rounded-3xl bg-black/25 -z-20" />
+
+  {/* FUTURISTIC GRADIENT */}
+  <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_top,_rgba(168,85,247,0.25),_transparent_60%)] -z-10" />
+
+  {/* CONTENT */}
+  <div className="relative z-10 h-full flex flex-col justify-center
+    bg-black/50
+    border border-white/20
+    rounded-3xl
+    p-10
+    transition-colors duration-300 hover:border-purple-400/50"
+  >
+  <h3 className="text-2xl font-bold mb-4 text-center
+  bg-gradient-to-r from-purple-400 to-pink-400
+  bg-clip-text text-transparent">
+  Our Mission
+</h3>
+
+<p className="text-gray-300 leading-relaxed text-center">
+  Our mission is to design and engineer production‑ready digital systems by
+  combining advanced AI capabilities with robust, enterprise‑grade backend
+  architecture. We focus on building secure, scalable, and high‑performance
+  solutions that deliver measurable value, accelerate decision‑making, and
+  support long‑term business growth.
+</p>
+
+  </div>
+</div>
+</div>
+</div>
         {/* Featured Projects Section */}
         <div className="relative overflow-hidden py-32">
           {/* Stars */}

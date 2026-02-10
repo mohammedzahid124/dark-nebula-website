@@ -7,9 +7,9 @@ import {
   Code,
   Palette,
   Server,
-  Mail,
+  Building2,
   TrendingUp,
-  Share2,
+  Layers,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -236,44 +236,44 @@ We organize them and show you the picture — so you know what customers like, w
 `,
     },
     {
-      id: 7,
-      title: "Email Services",
-      icon: Mail,
-      color: "from-orange-500 to-amber-600",
-      lightColor: "text-orange-400",
-      borderColor: "border-orange-500/30",
-      hoverBorder: "hover:border-orange-500/70",
-      features: [
-        "Email marketing campaigns",
-        "Newsletter automation",
-        "Drip campaigns & sequences",
-        "Segmentation & personalization",
-        "A/B testing & optimization",
-        "Responsive email templates",
-        "List management & hygiene",
-        "Deliverability optimization",
-        "Email analytics & reporting",
-        "Integration with CRM systems",
-      ],
-      description:
-        "Comprehensive email marketing solutions designed to nurture leads, engage customers, and drive conversions through targeted campaigns.",
-      details: `
-We design automated email systems that nurture leads and drive conversions.
+  id: 7,
+  title: "Business Management Systems",
+  icon: Building2, // or Settings / Layers / Database
+  color: "from-indigo-500 to-purple-600",
+  lightColor: "text-indigo-400",
+  borderColor: "border-indigo-500/30",
+  hoverBorder: "hover:border-indigo-500/70",
+  features: [
+    "Restaurant management systems",
+    "School management systems",
+    "Inventory & purchasing systems",
+    "ERP-style internal systems",
+    "Role-based access control",
+    "Workflow automation",
+    "Reporting & analytics",
+    "Multi-branch & multi-user support",
+    "Secure data management",
+    "Custom modules & integrations",
+  ],
+  description:
+    "Custom-built business management systems designed to streamline operations, improve visibility, and scale with your organization.",
+  details: `
+We build tailored business management platforms that simplify complex operations.
 
-Our campaigns include segmentation, personalization, A/B testing, analytics, and CRM integrations.
-
+From restaurants and schools to inventory, purchasing, and ERP-style internal systems, our solutions are designed to automate workflows, centralize data, and provide real-time insights — all built to match your exact business processes.
 `,
-      example: `
-Instead of yelling promotions from your rooftop…
+  example: `
+Instead of juggling spreadsheets, tools, and manual processes…
 
-We send smart emails to the right people at the right time — politely, automatically, and without annoying spam vibes.
+You get one intelligent system that runs your business smoothly — organized, automated, and ready to scale.
 `,
-    },
+},
+
     {
       id: 8,
       title: "Digital Marketing & Growth",
       icon: TrendingUp,
-      color: "from-indigo-500 to-purple-600",
+      color: "from-indigo-500 to-orange-600",
       lightColor: "text-indigo-400",
       borderColor: "border-indigo-500/30",
       hoverBorder: "hover:border-indigo-500/70",
@@ -303,41 +303,41 @@ You built something awesome — but nobody knows.
 We’re the megaphone 📣 that tells the internet you exist and helps the right customers find you.
 `,
     },
-    {
-      id: 9,
-      title: "Social Media Marketing",
-      icon: Share2,
-      color: "from-fuchsia-500 to-pink-600",
-      lightColor: "text-fuchsia-400",
-      borderColor: "border-fuchsia-500/30",
-      hoverBorder: "hover:border-fuchsia-500/70",
-      features: [
-        "Social media strategy",
-        "Content creation & curation",
-        "Community management",
-        "Influencer partnerships",
-        "Social advertising",
-        "Engagement optimization",
-        "Social listening tools",
-        "Trend analysis",
-        "Platform-specific expertise",
-        "Crisis management",
-      ],
-      description:
-        "Strategic social media management building authentic engagement and brand loyalty.",
-      details: `
-We manage social platforms with data‑driven strategies that build engagement and brand loyalty.
+   {
+  id: 9,
+  title: "Customized Applications",
+  icon: Layers, // or Code / AppWindow / Settings
+  color: "from-amber-400 to-yellow-600",
+lightColor: "text-amber-400",
+borderColor: "border-amber-500/30",
+hoverBorder: "hover:border-amber-500/70",
 
-Services include content creation, influencer partnerships, analytics, trend monitoring, and crisis management.
+  features: [
+    "Custom web applications",
+    "Internal business tools",
+    "Industry‑specific solutions",
+    "Workflow automation",
+    "Role‑based access systems",
+    "Scalable backend architecture",
+    "Third‑party API integrations",
+    "Secure data handling",
+    "Performance optimization",
+    "Ongoing enhancements & support",
+  ],
+  description:
+    "Tailor‑made applications designed to solve unique business challenges with precision, scalability, and performance.",
+  details: `
+We design and build fully customized applications that align perfectly with your business processes.
 
-
+From internal tools and dashboards to industry‑specific platforms, every solution is engineered for usability, security, and long‑term scalability — not one‑size‑fits‑all software.
 `,
-      example: `
-Think of us as your brand’s social butterfly.
+  example: `
+Instead of forcing your business to fit generic software…
 
-We talk to your audience, post cool stuff, reply to comments, and make sure your business doesn’t sound boring online.
+We build software that fits your business — custom, efficient, and built exactly the way you need it.
 `,
-    },
+},
+
   ];
 
   return (
@@ -511,3 +511,4 @@ hover:scale-105`}
     </section>
   );
 }
+ 
