@@ -89,7 +89,16 @@ export default function Hero() {
                 .getElementById("services")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="px-8 py-4 bg-linear-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all font-semibold hover:scale-105"
+            className="
+  px-5 py-3 sm:px-8 sm:py-4
+  text-sm sm:text-base
+  bg-linear-to-r from-purple-500 to-cyan-500
+  text-white
+  rounded-lg
+  hover:shadow-2xl hover:shadow-purple-500/50
+  transition-all font-semibold hover:scale-105
+"
+
           >
             Explore Services
           </button>
@@ -100,7 +109,16 @@ export default function Hero() {
                 .getElementById("contact")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="px-8 py-4 border-2 border-purple-400 text-white rounded-lg hover:bg-purple-500/20 transition-all font-semibold hover:scale-105"
+           className="
+  px-5 py-3 sm:px-8 sm:py-4
+  text-sm sm:text-base
+  border-2 border-purple-400
+  text-white
+  rounded-lg
+  hover:bg-purple-500/20
+  transition-all font-semibold hover:scale-105
+"
+
           >
             Contact Us
           </button>

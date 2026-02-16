@@ -16,9 +16,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+
+export const metadata = {
   title: "Dark Nebula",
-  description: "Dark Nebula Website",
+  icons: {
+    icon: "/icon.png",
+  },
+   description: "Dark Nebula Website",
 };
 
 export default function RootLayout({
