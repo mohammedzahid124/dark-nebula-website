@@ -260,13 +260,14 @@ export default function About() {
   muted
   loop
   playsInline
-  className="w-full h-full object-contain brightness-125 contrast-110"
+  className="absolute inset-0 w-full h-full object-cover brightness-125 contrast-110"
+
 />
 
   </div>
 
   {/* DARK OVERLAY (NO BLUR) */}
-  <div className="absolute inset-0 rounded-3xl bg-black/25 -z-20" />
+  <div className="absolute inset-0 rounded-3xl bg-black/10 -z-20" />
 
   {/* CONTENT */}
   <div className="relative z-10 h-full flex flex-col justify-center
@@ -306,12 +307,12 @@ export default function About() {
       muted
       loop
       playsInline
-      className="w-full h-full object-contain brightness-125 contrast-110"
+      className="absolute inset-0 w-full h-full object-cover brightness-125 contrast-110"
     />
   </div>
 
   {/* DARK OVERLAY (NO BLUR) */}
-  <div className="absolute inset-0 rounded-3xl bg-black/25 -z-20" />
+  <div className="absolute inset-0 rounded-3xl bg-black/10 -z-20" />
 
   {/* FUTURISTIC GRADIENT */}
   <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_top,_rgba(168,85,247,0.25),_transparent_60%)] -z-10" />
