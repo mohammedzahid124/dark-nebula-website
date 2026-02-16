@@ -37,7 +37,8 @@ export default function Hero() {
                   "AI",
                   "Cyber Security",
                   "Analytics",
-                  "Email Services",
+                  "Custom Application",
+                  "Buisness Management",
                   "Digital Marketing",
                 ]}
                 mainClassName="text-4xl sm:text-5xl md:text-6xl px-4 bg-cyan-300 text-black rounded-lg py-2 shadow-lg shadow-cyan-500/30"

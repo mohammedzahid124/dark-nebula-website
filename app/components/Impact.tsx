@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Users,
   MessageSquare,
@@ -12,7 +12,8 @@ import {
   ChevronRight,
   Award,
 } from "lucide-react";
-import MagicBento from "@/components/MagicBento";
+import MagicBento, { cardData } from "@/components/MagicBento";
+
 
 const carouselStyles = `
   @keyframes glowPulse {
@@ -68,9 +69,46 @@ const carouselStyles = `
  padding: 2rem;
  text-align: center;
 }
+.perspective {
+  perspective: 1200px;
+}
 
 .flip-card:hover .flip-inner {
  transform: rotateY(180deg);
+}
+.train-wrapper {
+  overflow: hidden;
+  width: 100%;
+  perspective: 1200px;
+}
+
+.train-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: trainMove 55s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.train-card {
+   flex-shrink: 0;
+  width: 75vw;
+  transition: transform 0.2s linear
+    
+}
+
+/* Parallax depth feel */
+.train-card:hover {
+  transform: scale(1.05);
+}
+
+@keyframes trainMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 
@@ -96,6 +134,41 @@ export default function Impact() {
   const [flipped, setFlipped] = useState<number | null>(null);
   const touchStartRef = useRef(0);
   const touchEndRef = useRef(0);
+  const trainRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+  const track = trainRef.current;
+  if (!track) return;
+
+  const cards = track.querySelectorAll(".train-card");
+
+  const updateScale = () => {
+    const center = window.innerWidth / 2;
+
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+
+      const distance = Math.abs(center - cardCenter);
+      const maxDistance = window.innerWidth / 2;
+
+      const scale = 1.15 - (distance / maxDistance) * 0.4;
+      const clampedScale = Math.max(0.85, Math.min(1.15, scale));
+
+      const element = card as HTMLElement;
+
+      element.style.transform = `
+        scale(${clampedScale})
+        rotateY(${(center - cardCenter) / 40}deg)
+      `;
+
+      element.style.zIndex = `${Math.round(100 - distance)}`;
+    });
+
+    requestAnimationFrame(updateScale);
+  };
+
+  updateScale();
+}, []);
 
   const reasons = [
     {
@@ -157,6 +230,14 @@ export default function Impact() {
     setCurrentCardIndex((prev) => (prev - 1 + reasons.length) % reasons.length);
   const goToNext = () =>
     setCurrentCardIndex((prev) => (prev + 1) % reasons.length);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMobileIndex((prev) => (prev + 1) % cardData.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -292,7 +373,49 @@ export default function Impact() {
               Why Work With Dark Nebula?
             </h3>
 
-            <MagicBento />
+            {/* Desktop */}
+            <div className="hidden md:block">
+              <MagicBento />
+            </div>
+
+            {/* Mobile Train Carousel */}
+{/* Mobile Cinematic Infinite Train */}
+<div className="md:hidden w-full overflow-hidden py-16">
+  <div className="train-wrapper">
+    <div className="train-track" ref={trainRef}>
+
+      {[...cardData, ...cardData].map((card, index) => (
+        <div key={index} className="train-card">
+          <div className="magic-bento-card magic-bento-card--border-glow">
+
+            {card.img && (
+              <div className="magic-bento-card__image">
+                <img
+                  src={card.img}
+                  alt={card.title}
+                  className="bento-img"
+                />
+              </div>
+            )}
+
+            <div className="magic-bento-card__content">
+              <h2 className="magic-bento-card__title">
+                {card.title}
+              </h2>
+              <p className="magic-bento-card__description">
+                {card.description}
+              </p>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+
+
           </div>
         </div>
       </section>
